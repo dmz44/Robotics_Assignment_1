@@ -227,19 +227,19 @@ Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm us
 
 
 Wayback machine
-https://web.archive.org/web/20240309202259/https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#run-navigation-nodes
+<https://web.archive.org/web/20240309202259/https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#run-navigation-nodes>
 Original URL
-https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/>
 
 Close all terminals if you are coming from previous sections.
 
 [Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
-ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
  [Remote PC] Open a terminal on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
 
-ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml
+    ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml
 
  [Remote PC] Click on the 2D Nav Goal button in the RViz menu GUI.
 
@@ -253,7 +253,7 @@ As soon as x, y, and targets are set, TurtleBot3 will immediately start moving t
 
 [Remote PC] For NUC users, go to this folder to look for your group’s YAML file.
 
-cd /home/chiu/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+                cd /home/chiu/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
  [Remote PC]  You can load your custom configuration YAML file by following the command.
 
@@ -261,7 +261,7 @@ Close all terminals if you are coming from previous sections.
 
 [Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
-ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+                ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
 [Remote PC] For NUC users, change your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
 
@@ -278,11 +278,11 @@ ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 Navigation2 stack has many parameters to change performances for different robots. Although it’s similar to the ROS1 Navigation, please refer to the Configuration Guide of Navigation2 or ROS Navigation Tuning Guide by Kaiyu Zheng for more details.
 
 Reference:
-https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation>
 
 Note: yaml file location is different in this guide
  
-Costmap Parameters
+### Costmap Parameters
 
 inflation_layer.inflation_radius
 Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
@@ -295,7 +295,7 @@ This is an inverse proportional factor that is multiplied by the value of the co
 
 The optimal path for the robot to pass through obstacles is to take a median path between them. Setting a smaller value for this parameter will create a farther path from the obstacles.
 
-dwb_controller
+### dwb_controller
 
 max_vel_x
 Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
@@ -391,8 +391,11 @@ Base Movement: Using the keyboard teleoperation node, demonstrate control of the
 This part demonstrates your ability to map an unknown environment.
 
 Launch SLAM: With the simulation running, launch the Cartographer SLAM node.
+
 Build the Map: Use the teleoperation node to drive the robot around the Gazebo environment. Your video must show the map being constructed in real-time within RViz. Drive enough to create a reasonably complete and accurate map of the world.
+
 Save the Map: Once the map is complete, execute the map_saver_cli command in a new terminal to save your map.
+
 Verify Files: Briefly open your file manager and show the map files that were generated in your home directory.
 
 ### Part C: Autonomous Navigation 
@@ -401,9 +404,13 @@ This final part shows you can use your generated map to have the robot navigate 
 
 Launch Navigation: Relaunch the simulation and start the Navigation2 stack, making sure to load the map you saved in Part B.
 Localize the Robot: In RViz, confirm the robot's initial position is correct. If it's not, use the "2D Pose Estimate" tool to set its correct starting position and orientation on the map.
+
 Navigate to Goals: Use the "2D Nav Goal" tool in RViz to assign two sequential goals for the robot:
+
 Goal 1: Set a destination in a clear, open area.
+
 Goal 2: Set a destination that requires the robot to navigate around at least one obstacle 
+
 Show the Path: For each goal, ensure the video clearly shows the global path planned by the navigation stack and the robot smoothly following that path to arrive at its destination. 
 
 ### Part D: Parameter Investigation 
@@ -416,10 +423,10 @@ Demonstrate the Effect: Briefly re-run the relevant task (SLAM or Navigation) an
 Explain Your Findings: In your narration, clearly state:
 
 Which file and parameter you modified.
+
 The original value and the new value.
+
 A brief explanation of the observed effect (e.g., "By increasing the inflation_radius from 0.2 to 1.0, the robot now plans paths that stay much further away from walls, treating them as larger obstacles.").
-
-
 
 ## Appendix
 
@@ -428,10 +435,10 @@ While we highly recommend that you use the provided NUC, you can choose to use y
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Foxy.  Please select Foxy on the website.
 
 (Web Archive)
-https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+<https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 (Original URL)
-https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 The above manual might help you if you are not comfortable with the provided instructions.
 
@@ -441,16 +448,16 @@ Preparing ROS 2 environment for your PC as ‘Remote PC’
 
 1) Install Ubuntu 20.04.2.0 LTS (Focal Fossa, 64bit, Desktop). Note that Virtual Machines and WSL2 environments are not officially supported by our class. 
 
-https://releases.ubuntu.com/focal/ 
+    <https://releases.ubuntu.com/focal/> 
 
 The installation file is  ubuntu-20.04.2.0-desktop-amd64.iso
 
 2) Install some software on the remote PC:
 
-sudo apt -y install vim
-sudo apt -y install net-tools
-sudo apt -y install openssh-server
-sudo apt -y install curl
+    sudo apt -y install vim
+    sudo apt -y install net-tools
+    sudo apt -y install openssh-server
+    sudo apt -y install curl
 
 You may want to remap the shortcut keys of Copy and Paste in your terminal.
 
@@ -462,147 +469,148 @@ Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi
 
 4) Update Ubuntu software:
 
-sudo apt-get update
-sudo apt-get upgrade
+    sudo apt-get update
+    sudo apt-get upgrade
 
 5) Install ROS 2 Foxy (full version):
 
-Please refer to https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
+Please refer to <https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html>
 
-locale  # check for UTF-8
-sudo apt update && sudo apt install locales
-sudo locale-gen en_US en_US.UTF-8
-sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
-locale  # verify settings
-
-sudo apt install software-properties-common
-sudo add-apt-repository universe
-
-sudo apt update && sudo apt install curl -y
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-
-sudo apt update
-
-sudo apt upgrade
-
-sudo apt install ros-foxy-desktop python3-argcomplete
-
-sudo apt install ros-dev-tools
-
-source /opt/ros/foxy/setup.bash
-echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+    locale  # check for UTF-8
+    sudo apt update && sudo apt install locales
+    sudo locale-gen en_US en_US.UTF-8
+    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    locale  # verify settings
+    
+    sudo apt install software-properties-common
+    sudo add-apt-repository universe
+    
+    sudo apt update && sudo apt install curl -y
+    sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+    
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+    
+    sudo apt update
+    
+    sudo apt upgrade
+    
+    sudo apt install ros-foxy-desktop python3-argcomplete
+    
+    sudo apt install ros-dev-tools
+    
+    source /opt/ros/foxy/setup.bash
+    echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 
 6) Install TurtleBot 3 ROS 2 Packages for foxy:
 
 Please refer to 
 
 (Web Archive)
-https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
+<https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/>
 (Current URL)
-https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup.
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup.>
 
 Dependencies
 
-sudo apt-get install ros-foxy-gazebo-*
-sudo apt install ros-foxy-cartographer
-sudo apt install ros-foxy-cartographer-ros
-sudo apt install ros-foxy-navigation2
-sudo apt install ros-foxy-nav2-bringup
+    sudo apt-get install ros-foxy-gazebo-*
+    sudo apt install ros-foxy-cartographer
+    sudo apt install ros-foxy-cartographer-ros
+    sudo apt install ros-foxy-navigation2
+    sudo apt install ros-foxy-nav2-bringup
 
 Turtlebot 3 Packages
 
-source ~/.bashrc
-sudo apt install ros-foxy-dynamixel-sdk
-sudo apt install ros-foxy-turtlebot3-msgs
-sudo apt install ros-foxy-turtlebot3
+    source ~/.bashrc
+    sudo apt install ros-foxy-dynamixel-sdk
+    sudo apt install ros-foxy-turtlebot3-msgs
+    sudo apt install ros-foxy-turtlebot3
 
 Environmental configuration
 
-echo 'export ROS_DOMAIN_ID=30 #TURTLEBOT3' >> ~/.bashrc
-source ~/.bashrc
+    echo 'export ROS_DOMAIN_ID=30 #TURTLEBOT3' >> ~/.bashrc
+    source ~/.bashrc
 
 Note: You can ignore the following warning
-bash: /home/{$YOUR_ACCOUNT}/turtlebot3_ws/install/setup.bash: No such file or directory
+
+    bash: /home/{$YOUR_ACCOUNT}/turtlebot3_ws/install/setup.bash: No such file or directory
 
 7) Install Open Manipulator ROS2 packages for Foxy. 
 
 Please refer to these links for more information
 (Web Archive)
-https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#turtlebot3-with-openmanipulator
+<https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#turtlebot3-with-openmanipulator>
 (Current URL)
-https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/>
 
 Refer to 7. Manipulation -> 7.1 TB3 & OpenMANIPULATOR -> 2. Software Setup -> Remote PC
 
-sudo apt install ros-foxy-dynamixel-sdk ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-gripper-controllers ros-foxy-moveit
-cd ~/
-mkdir turtlebot3_ws
-cd turtlebot3_ws
-mkdir src
-cd ~/turtlebot3_ws/src/
-git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
-cd ~/turtlebot3_ws && colcon build --symlink-install
+    sudo apt install ros-foxy-dynamixel-sdk ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-gripper-controllers ros-foxy-moveit
+    cd ~/
+    mkdir turtlebot3_ws
+    cd turtlebot3_ws
+    mkdir src
+    cd ~/turtlebot3_ws/src/
+    git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
+    cd ~/turtlebot3_ws && colcon build --symlink-install
 
 8) Set up the source for turtlebot ws
 
-source ~/turtlebot3_ws/install/setup.bash
-echo 'source ~/turtlebot3_ws/install/setup.bash' >> ~/.bashrc 
+    source ~/turtlebot3_ws/install/setup.bash
+    echo 'source ~/turtlebot3_ws/install/setup.bash' >> ~/.bashrc 
 
 9) Install foxy-moveit-servo
 
-sudo apt install ros-foxy-moveit-servo
+    sudo apt install ros-foxy-moveit-servo
 
 10) You may ignore warnings such as these whenever you load a new terminal window.
 
-not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
-not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
+    not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
+    not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
 
 
 
 
-Notes on running changing SLAM and Navigation parameters on your PC
+## Notes on running changing SLAM and Navigation parameters on your PC
 
-SLAM Simulation Steps 5 and 6
+### SLAM Simulation Steps 5 and 6
 
  [Remote PC]  You might want to look at the tuning guide to tune your map, should you find it necessary while performing steps on navigation. 
 
 For people following the Appendix to set up their own system
 
-cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
 
  [Remote PC]  You can load your custom Lua script by following the command.
 
 Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
-ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
 For people who are using their own pc, you can change the configuration file itself.
 
-vi turtlebot3_2d.lua
-
-ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py 
+    vi turtlebot3_2d.lua
+    
+    ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py 
 
 Note: Alternatively, in order for your custom Lua script loading to work, you need the configuration to be in your ros2 package’s configuration folder and use colcon build to let the ROS2 configuration file resolver know that it exists. (Step 7 in Appendix). This has been done for you on the NUC we provide. If you want to make a custom Lua file,  refer to the following steps
 
-cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    
+    cp turtlebot3_2d.lua custom.lua
+    
+    cd ~/turtlebot3_ws && colcon build --symlink-install
 
-cp turtlebot3_2d.lua custom.lua
 
-cd ~/turtlebot3_ws && colcon build --symlink-install
+    ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py configuration_basename:=’custom.lua’
 
-
-ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py configuration_basename:=’custom.lua’
-
-Navigation Simulation Steps 5 and 6
+### Navigation Simulation Steps 5 and 6
 
  [Remote PC]Recall from SLAM that you can tune SLAM parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. 
 
 Go to 
 
-cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
 [Remote PC]  You can load your custom configuration YAML file by following the command.
 
@@ -610,22 +618,22 @@ Close all terminals if you are coming from previous sections.
 
 [Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
-ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
 For people who are using their own pc, you can change the configuration file itself.
 
-vi turtlebot3.yaml 
-
-ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml 
+    vi turtlebot3.yaml 
+    
+    ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml 
 
 Note: Alternatively, in order for your custom YAML loading to work, you need the configuration to be in your ros2 package’s configuration folder and use colcon build to let the ROS2 configuration file resolver know that it exists. (Step 7 in Appendix). This has been done for you on the NUC we provide. If you want to make a custom YAML file,  refer to the following steps
 
-cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
-
-cp turtlebot3.yaml custom.yaml
-
-cd ~/turtlebot3_ws && colcon build --symlink-install
-
-ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=custom.yaml
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+    
+    cp turtlebot3.yaml custom.yaml
+    
+    cd ~/turtlebot3_ws && colcon build --symlink-install
+    
+    ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=custom.yaml
 
 
