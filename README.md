@@ -189,7 +189,7 @@ The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via
 
 Below options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ). For more details about each options, please refer to the Cartographer ROS official documentation.
 
-* MAP_BUILDER.use_trajectory_builder_2d
+* 'MAP_BUILDER.use_trajectory_builder_2d'
   
   This option sets the type of SLAM.
 
