@@ -2,7 +2,7 @@
 
 ## Programming Assignment: Milestone 1 (V1.2)
 
-Minhyuk Park and Tsz-Chiu Au
+**Authors:** Minhyuk Park and Tsz-Chiu Au
 
 
 ## Introduction
@@ -16,11 +16,11 @@ You might find the official tutorial on ROS2 Foxy useful in this course. https:/
 You might find this video a useful overview of requirements.
 https://www.youtube.com/watch?v=8w3xhG1GPdo
 
-## Assignment Requirement
+### Assignment Requirement
 
 You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making a video. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Each group will submit one video. 
 
-## Major Change Log
+### Major Change Log
 
 v1.1-> v1.2 
 Instruction updated to clarify how to modify parameters for SLAM and Navigation. 
@@ -30,6 +30,10 @@ Added sudo password for NUC. Please do not abuse this privilege.
 
 v1.0-> v1.1 Styling updates
 Part 1 - Remote PC Setup
+
+--- 
+
+## Environment Setup
 
 We need you to prepare a Ubuntu 20 PC for the course milestones and the final project. From now onwards, it will be called ‘Remote PC’. It will provide you with a simulated environment and the necessary visualization tools you need to interface with both the simulated and the physical robot. We highly recommend that you to use the provided NUC. Refer to the Appendix if you would like to use your own PC.
 
@@ -51,13 +55,13 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-vi ~/.bashrc
+'vi ~/.bashrc
 
 2) Append the following lines to the bashrc. You can start making changes in a vi editor by entering “i” to enter into insert mode. When you are done, exit out of insert mode with ESC and type :wq with enter to save and exit. By appending commands to the bashrc, these commands will execute whenever a new terminal window is opened. 
 
-source /opt/ros/foxy/setup.bash
-export ROS_DOMAIN_ID=30 #Turtlebot3
-source /home/chiu/turtlebot3_ws/install/setup.bash
+'source /opt/ros/foxy/setup.bash
+'export ROS_DOMAIN_ID=30 #Turtlebot3
+'source /home/chiu/turtlebot3_ws/install/setup.bash
 
 3) Changes to bashrc needs to be applied to the current terminal. Source the current terminal after saving bashrc.
 
