@@ -53,15 +53,11 @@ If you are using the provided NUC as the ‘Remote PC’, all programs you need 
 
 The account would not have sudo access. However, all the programs you need are already preinstalled. You just need to set up the following for your group’s account.
 
-1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
+**[Remote PC]** Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-<pre>
-<code>
-        <b> vi ~/.bashrc </b>
-</code>
-</pre>
+        vi ~/.bashrc 
 
-2) Append the following lines to the bashrc.
+**[Remote PC]** Append the following lines to the bashrc.
 
 You can start making changes in a vi editor by entering “i” to enter insert mode.
 
@@ -73,16 +69,16 @@ By appending commands to the bashrc, these commands will execute whenever a new 
       export ROS_DOMAIN_ID=30 #Turtlebot3
       source /home/chiu/turtlebot3_ws/install/setup.bash
 
-3) Changes to bashrc need to be applied to the current terminal. Source the current terminal after saving bashrc.
+**[Remote PC]** Changes to bashrc need to be applied to the current terminal. Source the current terminal after saving bashrc.
 
       source ~/.bashrc
 
-4) You may ignore the following warnings every time you open a new terminal
+**[Remote PC]** You may ignore the following warnings every time you open a new terminal
 
         not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
         not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
 
-5) Because this is a Ph.D. course, we will leave the sudo password for NUC here.
+**[Remote PC]** Because this is a Ph.D. course, we will leave the sudo password for NUC here.
    
 However, please do not use sudo unless absolutely necessary, as sudo is a major security risk among students that we want to move away from in the future.
 
