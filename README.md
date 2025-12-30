@@ -55,7 +55,7 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-        <b>vi ~/.bashrc<\b>
+        <b> vi ~/.bashrc <\b>
 
 2) Append the following lines to the bashrc.
 
