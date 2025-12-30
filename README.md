@@ -367,8 +367,8 @@ The demonstration must clearly show the successful completion of the following f
 
 The goal here is to show you can manually control both the robot's base 
 
-Launch Simulation: Start the Gazebo world and the necessary nodes for teleoperation
-Base Movement: Using the keyboard teleoperation node, demonstrate control of the mobile base. You must show the robot moving forward, backward, and turning both left and right.
+- Launch Simulation: Start the Gazebo world and the necessary nodes for teleoperation
+- Base Movement: Using the keyboard teleoperation node, demonstrate control of the mobile base. You must show the robot moving forward, backward, and turning both left and right.
 
 
 ## Part B: SLAM (Simultaneous Localization and Mapping) 
@@ -443,6 +443,7 @@ You may want to remap the shortcut keys of Copy and Paste in your terminal.
 3) Set up Network:
 
 Set up wifi connection settings to TXST-Bobcats wifi (for internet) and Small_Blue_Wifi (for local network environment for Turtlebot 3’s Single Board Computer)
+
 Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi. Remember the IP as IP_OF_REMOTE_PC.
 
 4) Update Ubuntu software:
@@ -486,7 +487,7 @@ Please refer to
 
 **(Web Archive)**
 <https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/>
-(Current URL)
+**(Current URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup.>
 
 Dependencies
@@ -518,7 +519,7 @@ Note: You can ignore the following warning
 Please refer to these links for more information
 **(Web Archive)**
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#turtlebot3-with-openmanipulator>
-(Current URL)
+**(Current URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/>
 
 Refer to 7. Manipulation -> 7.1 TB3 & OpenMANIPULATOR -> 2. Software Setup -> Remote PC
@@ -584,7 +585,7 @@ Note: Alternatively, in order for your custom Lua script loading to work, you ne
 
 ### Navigation Simulation Steps 5 and 6
 
- **[Remote PC]**Recall from SLAM that you can tune SLAM parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. 
+ **[Remote PC]** Recall from SLAM that you can tune SLAM parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. 
 
 Go to 
 
