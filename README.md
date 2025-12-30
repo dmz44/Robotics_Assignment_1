@@ -55,7 +55,7 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-    vi ~/.bashrc
+        vi ~/.bashrc
 
 2) Append the following lines to the bashrc.
 
@@ -65,18 +65,18 @@ When you are done, exit out of insert mode with ESC and type:wq with enter to sa
 
 By appending commands to the bashrc, these commands will execute whenever a new terminal window is opened.
 
-  source /opt/ros/foxy/setup.bash
-  export ROS_DOMAIN_ID=30 #Turtlebot3
-  source /home/chiu/turtlebot3_ws/install/setup.bash
+      source /opt/ros/foxy/setup.bash
+      export ROS_DOMAIN_ID=30 #Turtlebot3
+      source /home/chiu/turtlebot3_ws/install/setup.bash
 
 3) Changes to bashrc need to be applied to the current terminal. Source the current terminal after saving bashrc.
 
-  source ~/.bashrc
+      source ~/.bashrc
 
 4) You may ignore the following warnings every time you open a new terminal
 
-    not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
-    not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
+        not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
+        not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
 
 5) Because this is a Ph.D. course, we will leave the sudo password for NUC here.
    
@@ -432,10 +432,10 @@ The installation file is  ubuntu-20.04.2.0-desktop-amd64.iso
 
 2) Install some software on the remote PC:
 
-  sudo apt -y install vim
-  sudo apt -y install net-tools
-  sudo apt -y install openssh-server
-  sudo apt -y install curl
+      sudo apt -y install vim
+      sudo apt -y install net-tools
+      sudo apt -y install openssh-server
+      sudo apt -y install curl
 
 You may want to remap the shortcut keys of Copy and Paste in your terminal.
 
@@ -448,8 +448,8 @@ Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi
 
 4) Update Ubuntu software:
 
-  sudo apt-get update
-  sudo apt-get upgrade
+      sudo apt-get update
+      sudo apt-get upgrade
 
 5) Install ROS 2 Foxy (full version):
 
