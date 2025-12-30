@@ -40,14 +40,14 @@ We need you to prepare a Ubuntu 20 PC for the course milestones and the final pr
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Foxy.  Please select Foxy on the website.
 
 (Web Archive)
-https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+<https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 (Original URL)
-https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+<https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 The above manual might help you if you are not comfortable with the provided instructions.
 
-Preparing ROS 2 environment for the provided NUC as the ‘Remote PC’ 
+Preparing ROS 2 environment for the provided NUC as the ‘Remote PC’.
 
 If you are using the provided NUC as the ‘Remote PC’, all programs you need are already installed. Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
@@ -55,36 +55,35 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-' vi ~/.bashrc
+                vi ~/.bashrc
 
-2) Append the following lines to the bashrc. You can start making changes in a vi editor by entering “i” to enter into insert mode. When you are done, exit out of insert mode with ESC and type :wq with enter to save and exit. By appending commands to the bashrc, these commands will execute whenever a new terminal window is opened. 
+2) Append the following lines to the bashrc.
 
-'''
-source /opt/ros/foxy/setup.bash
-export ROS_DOMAIN_ID=30 #Turtlebot3
-source /home/chiu/turtlebot3_ws/install/setup.bash
-'''
+You can start making changes in a vi editor by entering “i” to enter insert mode. 
+When you are done, exit out of insert mode with ESC and type:wq with enter to save and exit. 
+By appending commands to the bashrc, these commands will execute whenever a new terminal window is opened. 
 
-3) Changes to bashrc needs to be applied to the current terminal. Source the current terminal after saving bashrc.
+                source /opt/ros/foxy/setup.bash
+                export ROS_DOMAIN_ID=30 #Turtlebot3
+                source /home/chiu/turtlebot3_ws/install/setup.bash
 
-'source ~/.bashrc
+3) Changes to bashrc need to be applied to the current terminal. Source the current terminal after saving bashrc.
+
+                source ~/.bashrc
 
 4) You may ignore the following warnings every time you open a new terminal
 
-'''
-not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
-not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
-'''
+                not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
+                not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
 
-5) Because this is a Ph.D. course, we will leave the sudo password for NUC here. However, please do not use sudo unless absolutely necessary, as sudo is a major security risk among students that we want to move away from in the future.
+5) Because this is a Ph.D. course, we will leave the sudo password for NUC here.
+   However, please do not use sudo unless absolutely necessary, as sudo is a major security risk among students that we want to move away from in the future.
 
-sudo id: chiu  passwd: 7389robotics
+                sudo id: chiu  passwd: 7389robotics
 
-Part 2 - Testing Your Setup Through Simulation
+# Part 2 - Testing Your Setup Through Simulation
 
 Next, we need you to demonstrate your setup with teleoperation and running SLAM and Navigation.
-
-
 
 ## Teleoperation Simulation
 
