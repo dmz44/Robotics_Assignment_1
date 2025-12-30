@@ -22,18 +22,18 @@ You need to demonstrate that you have a working setup and can operate the turtle
 
 ### Major Change Log
 
-v1.1-> v1.2 
-Instruction updated to clarify how to modify parameters for SLAM and Navigation. 
+#### v1.1-> v1.2 
+- Instruction updated to clarify how to modify parameters for SLAM and Navigation.
+- Fix done to the provided NUC to support modifying parameters without sudo.
+- Added sudo password for NUC. Please do not abuse this privilege.
 
-Fix done to the provided NUC to support modifying parameters without sudo.
-Added sudo password for NUC. Please do not abuse this privilege.
-
-v1.0-> v1.1 Styling updates
-Part 1 - Remote PC Setup
+#### v1.0-> v1.1 
+- Styling updates
+- Part 1 - Remote PC Setup
 
 --- 
 
-## Environment Setup
+# Part 1 - Environment Setup
 
 We need you to prepare a Ubuntu 20 PC for the course milestones and the final project. From now onwards, it will be called ‘Remote PC’. It will provide you with a simulated environment and the necessary visualization tools you need to interface with both the simulated and the physical robot. We highly recommend that you to use the provided NUC. Refer to the Appendix if you would like to use your own PC.
 
@@ -47,7 +47,7 @@ The following instructions are based on a manual provided by the manufacturer, R
 
 The above manual might help you if you are not comfortable with the provided instructions.
 
-Preparing ROS 2 environment for the provided NUC as the ‘Remote PC’.
+## Preparing ROS 2 environment for the provided NUC as the ‘Remote PC’.
 
 If you are using the provided NUC as the ‘Remote PC’, all programs you need are already installed. Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
@@ -55,7 +55,7 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-        > vi ~/.bashrc
+         vi ~/.bashrc
 
 2) Append the following lines to the bashrc.
 
@@ -139,15 +139,15 @@ Close all terminals if you are coming from previous sections.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
- [Remote PC] Launch the slam node using the following command.
+[Remote PC] Launch the slam node using the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py
         
- [Remote PC] Launch the keyboard teleoperation node. Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
+[Remote PC] Launch the keyboard teleoperation node. Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
- [Remote PC] Open a new terminal on Remote PC. Run the nav2_map_server to save the current map on RViz.
+[Remote PC] Open a new terminal on Remote PC. Run the nav2_map_server to save the current map on RViz.
 
     ros2 run nav2_map_server map_saver_cli -f ~/map
 
@@ -374,7 +374,7 @@ This factor is set forward simulation in seconds. Setting this too small makes r
 
 
 
-## Video Demo Requirements (Approximately 2.5 Minutes)
+# Video Demo Requirements (Approximately 2.5 Minutes)
 
 Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The maximum total length of the video clips is approximately two and a half minutes. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please clearly state the names of all group members.
 
@@ -382,7 +382,7 @@ Your recording setup should be organized to show all relevant windows at once: t
 
 The demonstration must clearly show the successful completion of the following four parts in order. 
 
-### Part A: Teleoperation 
+## Part A: Teleoperation 
 
 The goal here is to show you can manually control both the robot's base 
 
@@ -390,7 +390,7 @@ Launch Simulation: Start the Gazebo world and the necessary nodes for teleoperat
 Base Movement: Using the keyboard teleoperation node, demonstrate control of the mobile base. You must show the robot moving forward, backward, and turning both left and right.
 
 
-### Part B: SLAM (Simultaneous Localization and Mapping) 
+## Part B: SLAM (Simultaneous Localization and Mapping) 
 
 This part demonstrates your ability to map an unknown environment.
 
@@ -402,7 +402,7 @@ Save the Map: Once the map is complete, execute the map_saver_cli command in a n
 
 Verify Files: Briefly open your file manager and show the map files that were generated in your home directory.
 
-### Part C: Autonomous Navigation 
+## Part C: Autonomous Navigation 
 
 This final part shows you can use your generated map to have the robot navigate autonomously to specific goals.
 
@@ -417,7 +417,7 @@ Goal 2: Set a destination that requires the robot to navigate around at least on
 
 Show the Path: For each goal, ensure the video clearly shows the global path planned by the navigation stack and the robot smoothly following that path to arrive at its destination. 
 
-### Part D: Parameter Investigation 
+## Part D: Parameter Investigation 
 
 This section demonstrates that you have explored the configuration files and understand how tuning parameters can affect robot behavior.
 
