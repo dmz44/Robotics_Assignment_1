@@ -57,7 +57,7 @@ The account would not have sudo access. However, all the programs you need are a
 
 <pre>
 <code>
-        <b> vi ~/.bashrc <\b>
+        <b> vi ~/.bashrc </b>
 </code>
 </pre>
 
