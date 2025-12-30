@@ -86,7 +86,7 @@ Next, we need you to demonstrate your setup with teleoperation and running SLAM 
 
 
 
-Teleoperation Simulation
+## Teleoperation Simulation
 
 This manual is based on the following manual for Foxy.
 
@@ -111,12 +111,12 @@ ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
         
 The following keys are used to control the TurtleBot3. Try moving the turtlebot in the simulated space. Use O, K, L, and; keys to drive the TurtleBot3 platform.
 
-Use o|k|l|; keys to move the turtlebot base and use the 'space' key to stop the base
-Use s|x|z|c|a|d|f|v keys to Cartesian jog
-Use 1|2|3|4|q|w|e|r keys to joint jog.
-'ESC' to quit.
+                Use o|k|l|; keys to move the turtlebot base and use the 'space' key to stop the base        
+                Use s|x|z|c|a|d|f|v keys to Cartesian jog
+                Use 1|2|3|4|q|w|e|r keys to joint jog.
+                'ESC' to quit.
 
-SLAM Simulation
+## SLAM Simulation
 
 This manual is based on the following manual for ROS2 Foxy.
 (Wayback Machine)
@@ -163,15 +163,15 @@ ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
 [Remote PC] For NUC users, modify your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
 
-# change index according to your group name 
-vi group1.lua 
+                # change index according to your group name 
+                vi group1.lua 
 
 [Remote PC] Launch your modified Lua file by changing the launch command
 
-# change index according to your group name 
-ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py configuration_basename:=’group1.lua’
+                # change index according to your group name 
+                ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py configuration_basename:=’group1.lua’
 
-Slam Tuning Guide
+## Slam Tuning Guide
 
 Reference:
 (Wayback machine):
@@ -215,7 +215,7 @@ Global SLAM : Threshold for the scan match score below which a match is not cons
 POSE_GRAPH.constraint_builder.global_localization_min_score
 Global SLAM : Threshold below which global localizations are not trusted.
 
-Navigation Simulation
+## Navigation Simulation
 
 This manual is based on the following manual for ROS2 Foxy.
 
@@ -266,15 +266,15 @@ ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
 [Remote PC] For NUC users, change your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
 
-# change index according to your group name 
-vi group1_turtlebot3.yaml
+                # change index according to your group name 
+                vi group1_turtlebot3.yaml
 
 [Remote PC] Load your custom configuration YAML file by changing the launch command
 
-# change index according to your group name 
-ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=group1_turtlebot3.yaml
+                # change index according to your group name 
+                ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=group1_turtlebot3.yaml
 
-Navigation Tuning Guide
+## Navigation Tuning Guide
 
 Navigation2 stack has many parameters to change performances for different robots. Although it’s similar to the ROS1 Navigation, please refer to the Configuration Guide of Navigation2 or ROS Navigation Tuning Guide by Kaiyu Zheng for more details.
 
@@ -371,7 +371,7 @@ This factor is set forward simulation in seconds. Setting this too small makes r
 
 
 
-Video Demo Requirements (Approximately 2.5 Minutes)
+## Video Demo Requirements (Approximately 2.5 Minutes)
 
 Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The maximum total length of the video clips is approximately two and a half minutes. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please clearly state the names of all group members.
 
@@ -379,7 +379,7 @@ Your recording setup should be organized to show all relevant windows at once: t
 
 The demonstration must clearly show the successful completion of the following four parts in order. 
 
-Part A: Teleoperation 
+### Part A: Teleoperation 
 
 The goal here is to show you can manually control both the robot's base 
 
@@ -387,7 +387,7 @@ Launch Simulation: Start the Gazebo world and the necessary nodes for teleoperat
 Base Movement: Using the keyboard teleoperation node, demonstrate control of the mobile base. You must show the robot moving forward, backward, and turning both left and right.
 
 
-Part B: SLAM (Simultaneous Localization and Mapping) 
+### Part B: SLAM (Simultaneous Localization and Mapping) 
 
 This part demonstrates your ability to map an unknown environment.
 
@@ -396,7 +396,7 @@ Build the Map: Use the teleoperation node to drive the robot around the Gazebo e
 Save the Map: Once the map is complete, execute the map_saver_cli command in a new terminal to save your map.
 Verify Files: Briefly open your file manager and show the map files that were generated in your home directory.
 
-Part C: Autonomous Navigation 
+### Part C: Autonomous Navigation 
 
 This final part shows you can use your generated map to have the robot navigate autonomously to specific goals.
 
@@ -407,7 +407,7 @@ Goal 1: Set a destination in a clear, open area.
 Goal 2: Set a destination that requires the robot to navigate around at least one obstacle 
 Show the Path: For each goal, ensure the video clearly shows the global path planned by the navigation stack and the robot smoothly following that path to arrive at its destination. 
 
-Part D: Parameter Investigation 
+### Part D: Parameter Investigation 
 
 This section demonstrates that you have explored the configuration files and understand how tuning parameters can affect robot behavior.
 
@@ -422,7 +422,7 @@ A brief explanation of the observed effect (e.g., "By increasing the inflation_r
 
 
 
-Appendix
+## Appendix
 
 While we highly recommend that you use the provided NUC, you can choose to use your own portable PC for simulations and physical robot control.
 
