@@ -55,7 +55,7 @@ The account would not have sudo access. However, all the programs you need are a
 
 1) Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
 
-        vi ~/.bashrc
+        <b>vi ~/.bashrc<\b>
 
 2) Append the following lines to the bashrc.
 
@@ -92,7 +92,7 @@ Next, we need you to demonstrate your setup with teleoperation and running SLAM 
 
 This manual is based on the following manual for Foxy.
 
-****(Wayback Machine)****
+**(Wayback Machine)**
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
 **(Original URL)**
@@ -179,6 +179,7 @@ You might find it necessary to tune the SLAM parameters. Please read the tuning 
 ## Slam Tuning Guide
 
 Reference:
+
 **(Wayback Machine)**:
 <https://web.archive.org/web/20240309202817/https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#run-slam-node>
 
@@ -223,17 +224,18 @@ Below options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lu
 
 This manual is based on the following manual for ROS2 Foxy.
 
-Wayback Machine
+**(Wayback Machine)**
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
-Original URL
+**(Original URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
 Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm uses different software packages. However, this earlier section of the manual provides a better overview of Navigation. You might want to read up on the Navigation and Simulation section. Select Foxy for specific instructions for foxy.
 
-Wayback machine
+**(Wayback machine)**
 <https://web.archive.org/web/20240309202259/https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#run-navigation-nodes>
-Original URL
+
+**(Original URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/>
 
 Close all terminals if you are coming from previous sections.
