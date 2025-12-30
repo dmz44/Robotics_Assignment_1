@@ -39,10 +39,10 @@ We need you to prepare a Ubuntu 20 PC for the course milestones and the final pr
 
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Foxy.  Please select Foxy on the website.
 
-(Web Archive)
+** (Web Archive) **
 <https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
-(Original URL)
+** (Original URL) **
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 The above manual might help you if you are not comfortable with the provided instructions.
@@ -92,23 +92,23 @@ Next, we need you to demonstrate your setup with teleoperation and running SLAM 
 
 This manual is based on the following manual for Foxy.
 
-(Wayback Machine)
+** (Wayback Machine) **
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
-(Original URL)
+** (Original URL) **
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
 This manual assumes you have completed Part 1 on setting up your remote PC. You may also use the provided NUC.
 
-[Remote PC] Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
+** [Remote PC] ** Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-[Remote PC] To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first.
+** [Remote PC] ** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first.
 
     ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
         
- [Remote PC] Launch the keyboard teleoperation node.
+ ** [Remote PC] ** Launch the keyboard teleoperation node.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
         
@@ -125,7 +125,7 @@ This manual is based on the following manual for ROS2 Foxy.
 (Wayback Machine)
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
-(Original URL)
+** (Original URL) **
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
 Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm uses different software packages. However, this earlier section of the manual provides a better overview of SLAM. You might want to read up on the SLAM and Simulation section. Select Foxy for specific instructions for foxy.
@@ -133,45 +133,45 @@ Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm us
 (Wayback machine)
 <https://web.archive.org/web/20240309202817/https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#run-slam-node>
 
-(Original URL)
+** (Original URL) **
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/>
 
 Close all terminals if you are coming from previous sections.
 
-[Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+** [Remote PC] ** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-[Remote PC] Launch the slam node using the following command.
+** [Remote PC] ** Launch the slam node using the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py
         
-[Remote PC] Launch the keyboard teleoperation node. Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
+** [Remote PC] ** Launch the keyboard teleoperation node. Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
-[Remote PC] Open a new terminal on Remote PC. Run the nav2_map_server to save the current map on RViz.
+** [Remote PC] ** Open a new terminal on Remote PC. Run the nav2_map_server to save the current map on RViz.
 
     ros2 run nav2_map_server map_saver_cli -f ~/map
 
 You might find it necessary to tune the SLAM parameters. Please read the tuning guide before trying to tune. For people using their own PC, please also refer to the last section of the appendix.
 
-[Remote PC] The configuration location can be accessed by following the terminal command. For NUC users, go to this folder and look for your group’s Lua script.
+** [Remote PC] ** The configuration location can be accessed by following the terminal command. For NUC users, go to this folder and look for your group’s Lua script.
 
     cd /home/chiu/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
 
-[Remote PC]  You can load your custom Lua script by following the command.
+** [Remote PC] **  You can load your custom Lua script by following the command.
 
-[Remote PC] Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
+** [Remote PC] ** Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-[Remote PC] For NUC users, modify your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
+** [Remote PC] ** For NUC users, modify your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
 
     # change index according to your group name 
     vi group1.lua 
 
-[Remote PC] Launch your modified Lua file by changing the launch command
+** [Remote PC] ** Launch your modified Lua file by changing the launch command
 
     # change index according to your group name 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py configuration_basename:=’group1.lua’
@@ -182,7 +182,7 @@ Reference:
 (Wayback machine):
 <https://web.archive.org/web/20240309202817/https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#run-slam-node>
 
-(Original URL):
+** (Original URL) **:
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/>
 
 The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via a Lua file.
@@ -238,17 +238,17 @@ Original URL
 
 Close all terminals if you are coming from previous sections.
 
-[Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+** [Remote PC] ** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
- [Remote PC] Open a terminal on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
+ ** [Remote PC] ** Open a terminal on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml
 
- [Remote PC] Click on the 2D Nav Goal button in the RViz menu GUI.
+ ** [Remote PC] ** Click on the 2D Nav Goal button in the RViz menu GUI.
 
- [Remote PC] Click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing. 
+ ** [Remote PC] ** Click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing. 
 
 This green arrow is a marker that can specify the destination of the robot.
 The root of the arrow is the x, y coordinates of the destination, and the angle  is determined by the orientation of the arrow.
@@ -256,24 +256,24 @@ As soon as x, y, and targets are set, TurtleBot3 will immediately start moving t
 
  Recall from SLAM that you can tune parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. Please read the tuning guide before trying to tune. For people using their own PC, please also refer to the last section of the appendix.
 
-[Remote PC] For NUC users, go to this folder to look for your group’s YAML file.
+** [Remote PC] ** For NUC users, go to this folder to look for your group’s YAML file.
 
     cd /home/chiu/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
- [Remote PC]  You can load your custom configuration YAML file by following the command.
+ ** [Remote PC] **  You can load your custom configuration YAML file by following the command.
 
 Close all terminals if you are coming from previous sections.
 
-[Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+** [Remote PC] ** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-[Remote PC] For NUC users, change your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
+** [Remote PC] ** For NUC users, change your own group’s Lua script. File permissions are set so that you cannot view or modify other groups’ files.
 
     # change index according to your group name 
     vi group1_turtlebot3.yaml
 
-[Remote PC] Load your custom configuration YAML file by changing the launch command
+** [Remote PC] ** Load your custom configuration YAML file by changing the launch command
 
     # change index according to your group name 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=group1_turtlebot3.yaml
@@ -419,10 +419,10 @@ While we highly recommend that you use the provided NUC, you can choose to use y
 
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Foxy.  Please select Foxy on the website.
 
-(Web Archive)
+** (Web Archive) **
 <https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
-(Original URL)
+** (Original URL) **
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 The above manual might help you if you are not comfortable with the provided instructions.
@@ -491,7 +491,7 @@ Please refer to <https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debian
 
 Please refer to 
 
-(Web Archive)
+** (Web Archive) **
 <https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/>
 (Current URL)
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup.>
@@ -523,7 +523,7 @@ Note: You can ignore the following warning
 7) Install Open Manipulator ROS2 packages for Foxy. 
 
 Please refer to these links for more information
-(Web Archive)
+** (Web Archive) **
 <https://web.archive.org/web/20240309203141/https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#turtlebot3-with-openmanipulator>
 (Current URL)
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/>
@@ -560,13 +560,13 @@ Refer to 7. Manipulation -> 7.1 TB3 & OpenMANIPULATOR -> 2. Software Setup -> Re
 
 ### SLAM Simulation Steps 5 and 6
 
- [Remote PC]  You might want to look at the tuning guide to tune your map, should you find it necessary while performing steps on navigation. 
+ ** [Remote PC] **  You might want to look at the tuning guide to tune your map, should you find it necessary while performing steps on navigation. 
 
 For people following the Appendix to set up their own system
 
     cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
 
- [Remote PC]  You can load your custom Lua script by following the command.
+ ** [Remote PC] **  You can load your custom Lua script by following the command.
 
 Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
@@ -591,17 +591,17 @@ Note: Alternatively, in order for your custom Lua script loading to work, you ne
 
 ### Navigation Simulation Steps 5 and 6
 
- [Remote PC]Recall from SLAM that you can tune SLAM parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. 
+ ** [Remote PC] **Recall from SLAM that you can tune SLAM parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. 
 
 Go to 
 
     cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
-[Remote PC]  You can load your custom configuration YAML file by following the command.
+** [Remote PC] **  You can load your custom configuration YAML file by following the command.
 
 Close all terminals if you are coming from previous sections.
 
-[Remote PC] Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+** [Remote PC] ** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
