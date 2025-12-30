@@ -190,45 +190,35 @@ The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via
 Below options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ). For more details about each options, please refer to the Cartographer ROS official documentation.
 
 * `MAP_BUILDER.use_trajectory_builder_2d`
-  
-  This option sets the type of SLAM.
+    * This option sets the type of SLAM.
 
-* TRAJECTORY_BUILDER_2D.min_range
-  
-  This option sets the minimum usable range of the lidar sensor.
+* `TRAJECTORY_BUILDER_2D.min_range`
+    * This option sets the minimum usable range of the lidar sensor.
 
-* TRAJECTORY_BUILDER_2D.max_range
-  
-  This option sets the maximum usable range of the lidar sensor.
+* `TRAJECTORY_BUILDER_2D.max_range`
+    * This option sets the maximum usable range of the lidar sensor.
 
-* TRAJECTORY_BUILDER_2D.missing_data_ray_length
-  
-  In 2D, Cartographer replaces ranges further than max_range with TRAJECTORY_BUILDER_2D.missing_data_ray_length.
+* `TRAJECTORY_BUILDER_2D.missing_data_ray_length`
+    * In 2D, Cartographer replaces ranges further than `max_range` with this value.
 
-* TRAJECTORY_BUILDER_2D.use_imu_data
-  
-  If you use 2D SLAM, range data can be handled in real-time without an additional source of information, so you can choose whether you’d like Cartographer to use an IMU or not.
+* `TRAJECTORY_BUILDER_2D.use_imu_data`
+    * If you use 2D SLAM, range data can be handled in real-time without an additional source of information, so you can choose whether you’d like Cartographer to use an IMU or not.
 
-* TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching
-  
-  Local SLAM : The RealTimeCorrelativeScanMatcher can be toggled depending on the reliability of the sensor.
+* `TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching`
+    * **Local SLAM:** The `RealTimeCorrelativeScanMatcher` can be toggled depending on the reliability of the sensor.
 
-* TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians
-  
-  Local SLAM : To avoid inserting too many scans per submaps, A scan is dropped if the motion does not exceed a certain angle.
+* `TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians`
+    * **Local SLAM:** To avoid inserting too many scans per submap, a scan is dropped if the motion does not exceed a certain angle.
 
-* POSE_GRAPH.optimize_every_n_nodes
-  
-  Global SLAM : Setting POSE_GRAPH.optimize_every_n_nodes to 0 is a handy way to disable global SLAM and concentrate on the behavior of local SLAM.
+* `POSE_GRAPH.optimize_every_n_nodes`
+    * **Global SLAM:** Setting this to `0` is a handy way to disable global SLAM and concentrate on the behavior of local SLAM.
 
-* POSE_GRAPH.constraint_builder.min_score
-  
-  Global SLAM : Threshold for the scan match score below which a match is not considered. Low scores indicate that the scan and map do not look similar.
+* `POSE_GRAPH.constraint_builder.min_score`
+    * **Global SLAM:** Threshold for the scan match score below which a match is not considered. Low scores indicate that the scan and map do not look similar.
 
-* POSE_GRAPH.constraint_builder.global_localization_min_score
-  
-  Global SLAM : Threshold below which global localizations are not trusted.
-
+* `POSE_GRAPH.constraint_builder.global_localization_min_score`
+    * **Global SLAM:** Threshold below which global localizations are not trusted.
+      
 ## Navigation Simulation
 
 This manual is based on the following manual for ROS2 Foxy.
@@ -298,92 +288,72 @@ Reference:
 Note: yaml file location is different in this guide
  
 ### Costmap Parameters
+*Parameters defined in: `turtlebot3_navigation2/param/${TB3_MODEL}.yaml`*
 
-inflation_layer.inflation_radius
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-This parameter makes the inflation area from the obstacle. The path would be planned in order that it does not cross this area. It is safe to set this to be bigger than the robot radius. For more information, please refer to the costmap_2d wiki.
+* `inflation_layer.inflation_radius`
+  * This parameter creates an inflation area around the obstacle. The path is planned so that it does not cross this area. It is safe to set this larger than the robot radius. For more information, please refer to the `costmap_2d` wiki.
 
-
-inflation_layer.cost_scaling_factor
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-This is an inverse proportional factor that is multiplied by the value of the costmap. If this parameter is increased, the value of the costmap is decreased.
-
-The optimal path for the robot to pass through obstacles is to take a median path between them. Setting a smaller value for this parameter will create a farther path from the obstacles.
+* `inflation_layer.cost_scaling_factor`
+  * This is an inverse proportional factor multiplied by the value of the costmap. If this parameter is increased, the costmap value decreases.
+  * The optimal path for the robot to pass through obstacles is to take a median path between them. Setting a smaller value for this parameter will create a path farther from the obstacles.
 
 ### dwb_controller
+*Parameters defined in: `turtlebot3_navigation2/param/${TB3_MODEL}.yaml`*
 
-max_vel_x
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-This factor is set the maximum value of translational velocity.
+* `max_vel_x`
+  * Sets the maximum value of translational velocity.
 
-min_vel_x
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-This factor is set the minimum value of translational velocity. If set this negative, the robot can move backwards.
+* `min_vel_x`
+  * Sets the minimum value of translational velocity. If set negative, the robot can move backwards.
 
-max_vel_y
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The maximum y velocity for the robot in m/s.
+* `max_vel_y`
+  * The maximum y velocity for the robot in m/s.
 
-min_vel_y
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The minimum y velocity for the robot in m/s.
+* `min_vel_y`
+  * The minimum y velocity for the robot in m/s.
 
-max_vel_theta
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-Actual value of the maximum rotational velocity. The robot can not be faster than this.
-min_speed_theta
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-Actual value of the minimum rotational speed. The robot can not be slower than this.
+* `max_vel_theta`
+  * Actual value of the maximum rotational velocity. The robot cannot be faster than this.
 
-max_speed_xy
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The absolute value of the maximum translational velocity for the robot in m/s.
+* `min_speed_theta`
+  * Actual value of the minimum rotational speed. The robot cannot be slower than this.
 
-min_speed_xy
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The absolute value of the minimum translational velocity for the robot in m/s.
+* `max_speed_xy`
+  * The absolute value of the maximum translational velocity for the robot in m/s.
 
-acc_lim_x
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The x acceleration limit of the robot in meters/sec^2.
+* `min_speed_xy`
+  * The absolute value of the minimum translational velocity for the robot in m/s.
 
-acc_lim_y
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The y acceleration limit of the robot in meters/sec^2.
+* `acc_lim_x`
+  * The x acceleration limit of the robot in m/s².
 
-acc_lim_theta
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The rotational acceleration limit of the robot in radians/sec^2.
+* `acc_lim_y`
+  * The y acceleration limit of the robot in m/s².
 
-decel_lim_x
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The deceleration limit of the robot in the x direction in m/s^2.
+* `acc_lim_theta`
+  * The rotational acceleration limit of the robot in rad/s².
 
-decel_lim_y
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The deceleration limit of the robot in the y direction in m/s^2.
+* `decel_lim_x`
+  * The deceleration limit of the robot in the x direction in m/s².
 
-decel_lim_theta
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The deceleration limit of the robot in the theta direction in rad/s^2.
+* `decel_lim_y`
+  * The deceleration limit of the robot in the y direction in m/s².
 
-xy_goal_tolerance
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The x,y distance allowed when the robot reaches its goal pose.
+* `decel_lim_theta`
+  * The deceleration limit of the robot in the theta direction in rad/s².
 
-yaw_goal_tolerance
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-The yaw angle allowed when the robot reaches its goal pose.
+* `xy_goal_tolerance`
+  * The x,y distance allowed when the robot reaches its goal pose.
 
-transform_tolerance
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-It allows the latency for tf messages.
+* `yaw_goal_tolerance`
+  * The yaw angle allowed when the robot reaches its goal pose.
 
-sim_time
-Defined in turtlebot3_navigation2/param/${TB3_MODEL}.yaml
-This factor is set forward simulation in seconds. Setting this too small makes robot difficult to pass a narrow space while large value limits dynamic turns. You can observe the defferences of length of the yellow line in below image that represents the simulation path.
+* `transform_tolerance`
+  * Allows latency for tf messages.
 
-
+* `sim_time`
+  * Sets the forward simulation time in seconds.
+  * Setting this too small makes it difficult for the robot to pass narrow spaces, while a large value limits dynamic turns. *You can observe the differences in the length of the yellow line in the simulation path.*
 
 # Video Demo Requirements (Approximately 2.5 Minutes)
 
