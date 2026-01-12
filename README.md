@@ -1,15 +1,16 @@
-# CS 7389K (2025): Advanced Robotics and Autonomous Systems
+# 2026 CS 4379K / CS 5342 Introduction to Autonomous Robotics, Robotics and Autonomous Systems
 
-## Programming Assignment: Milestone 1 (V1.2)
+## Programming Assignment: Milestone 1 (V1.3)
 
 **Authors:** Minhyuk Park and Tsz-Chiu Au
 
-
 ## Introduction
 
-Welcome to CS 7389K. We prepared a series of programming assignments to teach you how to program a mobile manipulator to perform a task. Each assignment is a milestone towards programming a robot to perform the task. In the first milestone, we intend to give you an idea of how to interact with ROBOTIS’ Turtlebot3 waffle Pi with a Manipulator Arm using the Robot Operating System 2 (ROS2).
+Welcome to CS 4379K / CS 5342. We prepared a series of programming assignments to teach you how to program a mobile manipulator to perform a task. Each assignment is a milestone towards programming a robot to perform the task. In the first milestone, we intend to give you an idea of how to interact with ROBOTIS’ Turtlebot3 waffle Pi with a Manipulator Arm using the Robot Operating System 2 (ROS2).
 
 The first milestone is about simulating the mobile base (Turtlebot 3 Waffle Pi) in Gazebo, and running teleoperation, SLAM, and Navigation nodes. This verifies you have a working remote-pc setup for simulating turtlebot3, as well as controlling the physical robot in the future milestone assignments. This environment should also allow you to explore communication interfaces in ROS2 that will be useful in future milestones assignments. 
+
+To do this, you will deploy our pre-configured Docker container that sets up all the software that is required for the assignment.
 
 You might find the official tutorial on ROS2 Foxy useful in this course. <https://docs.ros.org/en/foxy/Tutorials.html>
 
@@ -21,6 +22,9 @@ You might find this video a useful overview of requirements.
 You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making a video. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Each group will submit one video. 
 
 ### Major Change Log
+
+#### v1.2-> v1.3 
+- Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
 
 #### v1.1-> v1.2 
 - Instruction updated to clarify how to modify parameters for SLAM and Navigation.
@@ -35,54 +39,239 @@ You need to demonstrate that you have a working setup and can operate the turtle
 
 # Part 1 - Environment Setup
 
-We need you to prepare a Ubuntu 20 PC for the course milestones and the final project. From now onwards, it will be called ‘Remote PC’. It will provide you with a simulated environment and the necessary visualization tools you need to interface with both the simulated and the physical robot. We highly recommend that you to use the provided NUC. Refer to the Appendix if you would like to use your own PC.
+We need you to prepare a Ubuntu 22.04 Docker environment for the course milestones and the final project. From now onwards, it will be called ‘Remote PC’. It will provide you with a simulated environment for the robot, necessary Artificial Intelligence softwares and the necessary visualization tools you need to interface with both the simulated and the physical robot. We highly recommend that you to use the provided laptop. Nevertheless, you should be able to deploy this Docker container on your own computer, provided you have the necessary hardware, such as an Nvidia GPU.
 
-The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Foxy.  Please select Foxy on the website.
-
-**(Web Archive)**
-<https://web.archive.org/web/20240309202506/https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
+The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Humble.  Please select Humble on the website.
 
 **(Original URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
 The above manual might help you if you are not comfortable with the provided instructions.
 
-## Preparing ROS 2 environment for the provided NUC as the ‘Remote PC’.
+## Preparing ROS 2 environment for the provided Laptop as the ‘Remote PC’.
 
-If you are using the provided NUC as the ‘Remote PC’, all programs you need are already installed. Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
+Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
 The account would not have sudo access. However, all the programs you need are already preinstalled. You just need to set up the following for your group’s account.
 
-**[Remote PC]** Log in to your account, open a new terminal window, and open the ~/.bashrc file in vi editor.
+IN PROGRESS
 
-        vi ~/.bashrc 
+Chage your nvidia drivers by going into software and updates, settings and pro, additional drivers, nvidia cooperation: unknown and using nvidia driver (open kernel).... (proprietary)
 
-**[Remote PC]** Append the following lines to the bashrc.
+# 1. Configure the repository
+        curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+          && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
-You can start making changes in a vi editor by entering “i” to enter insert mode.
+# 2. Install the toolkit
+        sudo apt-get update
+        sudo apt-get install -y nvidia-container-toolkit
 
-When you are done, exit out of insert mode with ESC and type:wq with enter to save and exit.
+# 3. Configure Docker to use it and restart Docker
+        sudo nvidia-ctk runtime configure --runtime=docker
+        sudo systemctl restart docker
 
-By appending commands to the bashrc, these commands will execute whenever a new terminal window is opened.
+Ubuntu 24 install
 
-      source /opt/ros/foxy/setup.bash
-      export ROS_DOMAIN_ID=30 #Turtlebot3
-      source /home/chiu/turtlebot3_ws/install/setup.bash
+        https://docs.docker.com/engine/install/ubuntu
 
-**[Remote PC]** Changes to bashrc need to be applied to the current terminal. Source the current terminal after saving bashrc.
+        sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
 
-      source ~/.bashrc
+# Add Docker's official GPG key:
+        sudo apt update
+        sudo apt install ca-certificates curl
+        sudo install -m 0755 -d /etc/apt/keyrings
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-**[Remote PC]** You may ignore the following warnings every time you open a new terminal
+# Add the repository to Apt sources:
+        sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+        Types: deb
+        URIs: https://download.docker.com/linux/ubuntu
+        Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+        Components: stable
+        Signed-By: /etc/apt/keyrings/docker.asc
+        EOF
 
-        not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_fake_node/share/turtlebot3_fake_node/local_setup.bash"
-        not found: "/home/chiu/turtlebot3_ws/install/turtlebot3_gazebo/share/turtlebot3_gazebo/local_setup.bash"
+        sudo apt update
+        
+        sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        
+        sudo docker run hello-world
 
-**[Remote PC]** Because this is a Ph.D. course, we will leave the sudo password for NUC here.
-   
-However, please do not use sudo unless absolutely necessary, as sudo is a major security risk among students that we want to move away from in the future.
+only if you have sudo
 
-    sudo id: chiu  passwd: 7389robotics
+        sudo usermod -aG docker $USER
+
+Setup dockerfile
+
+mkdir turltebot_docker
+cd turtlebot_docker
+vi Dockerfile
+
+# Step 1: Base Image with CUDA 12.1 support for Ubuntu 20.04
+# We use the "devel" version to get the compiler (nvcc) needed for llama-cpp-python
+FROM nvidia/cuda:12.1.1-devel-ubuntu20.04
+
+# Set non-interactive mode
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Step 2: Install Basic Tools & Audio/AI Dependencies
+# ffmpeg is required for Whisper; espeak-ng for TTS; python3-pip for libraries
+RUN apt-get update && apt-get install -y \
+    vim \
+    net-tools \
+    openssh-server \
+    curl \
+    git \
+    locales \
+    software-properties-common \
+    python3-pip \
+    python3-venv \
+    espeak-ng \
+    ffmpeg \
+    libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Step 3: Locale Setup
+RUN locale-gen en_US en_US.UTF-8
+RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
+# Step 4: Install Python AI Libraries (Whisper & Llama)
+# Upgrade pip first to avoid build issues
+RUN python3 -m pip install --upgrade pip
+
+# Install OpenAI Whisper
+RUN pip3 install openai-whisper setuptools-rust
+
+# Install llama-cpp-python with CUDA support enabled
+# We set CMAKE_ARGS to force it to use the GPU
+ENV CMAKE_ARGS="-DGGML_CUDA=on"
+RUN pip3 install llama-cpp-python
+
+# Step 5: Install ROS 2 Foxy
+# Add keys and repo
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu focal main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# Update and Install Foxy Desktop + Dev Tools
+RUN apt-get update && apt-get install -y \
+    ros-foxy-desktop \
+    python3-argcomplete \
+    ros-dev-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# Step 6: Install TurtleBot 3 Dependencies
+RUN apt-get update && apt-get install -y \
+    ros-foxy-gazebo-* \
+    ros-foxy-cartographer \
+    ros-foxy-cartographer-ros \
+    ros-foxy-navigation2 \
+    ros-foxy-nav2-bringup \
+    ros-foxy-dynamixel-sdk \
+    ros-foxy-turtlebot3-msgs \
+    ros-foxy-turtlebot3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Step 7: Install Open Manipulator & Build Workspace
+RUN apt-get update && apt-get install -y \
+    ros-foxy-ros2-control \
+    ros-foxy-ros2-controllers \
+    ros-foxy-gripper-controllers \
+    ros-foxy-moveit \
+    ros-foxy-moveit-servo \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root/turtlebot3_ws/src
+RUN git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
+
+WORKDIR /root/turtlebot3_ws
+SHELL ["/bin/bash", "-c"]
+RUN source /opt/ros/foxy/setup.bash && \
+    colcon build --symlink-install
+
+# Step 8: Update .bashrc
+RUN echo "source /opt/ros/foxy/setup.bash" >> /root/.bashrc
+RUN echo "export ROS_DOMAIN_ID=30" >> /root/.bashrc
+RUN echo "source /root/turtlebot3_ws/install/setup.bash" >> /root/.bashrc
+
+CMD ["/bin/bash"]
+
+building docker image 
+
+docker build -t ros-foxy-turtlebot .
+
+
+create docker-compose file to mount working folder and add gui support
+
+        mkdir my_code
+        vi docker-compose.yml
+
+Change yml file to the following
+
+        services:
+          remote_pc:
+            build: .
+            image: ros-foxy-ai-gpu
+            container_name: remote_pc_foxy
+            network_mode: host
+            privileged: true
+            
+            # Enable NVIDIA GPU support
+            deploy:
+              resources:
+                reservations:
+                  devices:
+                    - driver: nvidia
+                      count: all
+                      capabilities: [gpu]
+        
+            environment:
+              - DISPLAY=${DISPLAY}
+              - QT_X11_NO_MITSHM=1
+              - NVIDIA_VISIBLE_DEVICES=all
+              - NVIDIA_DRIVER_CAPABILITIES=all
+            
+            volumes:
+              - /tmp/.X11-unix:/tmp/.X11-unix:rw
+              # Your local code (and GGUF models) map here
+              - ./my_code:/root/turtlebot3_ws/src/my_code
+            
+            command: tail -f /dev/null
+            stdin_open: true
+            tty: true
+
+# Useful commands
+
+enable gui permissions every boot
+
+        xhost +local:root
+
+build container
+
+        docker compose up -d --build
+
+enter container
+
+        docker exec -it remote_pc_foxy bash
+
+test your container
+
+        xhost +local:root
+
+printenv | grep ROS
+# Should show ROS_DISTRO=foxy and ROS_DOMAIN_ID=30
+        ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py
+
+        sudo docker compose down
+        sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
+        sudo docker exec -it remote_pc_foxy bash
+
+        espeak "Audio check successful" --stdout | paplay
+        printenv | grep ROS
+
 
 # Part 2 - Testing Your Setup Through Simulation
 
@@ -186,6 +375,8 @@ Reference:
 **(Original URL)**:
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/>
 
+In this assignment, you will demonstrate understanding of parameters in ROS2 software. Parameters are variables that can either be loaded during the launch process or changed during runtime, that alter the behavior of ROS2 software.
+
 The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via a Lua file.
 
 Below options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ). For more details about each options, please refer to the Cartographer ROS official documentation.
@@ -281,13 +472,15 @@ Close all terminals if you are coming from previous sections.
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml params_file:=group1_turtlebot3.yaml
 
 ## Navigation Tuning Guide
-The 
-Navigation2 stack has many parameters to change performance for different robots. Although it’s similar to the ROS1 Navigation, please refer to the Configuration Guide of Navigation2 or the ROS Navigation Tuning Guide by Kaiyu Zheng for more details.
+
+Just like SLAM, you will demonstrate your understanding of parameters in ROS2 software with Navigation2.
+
+The Navigation2 stack has many unique parameters that change performance for different robots. Although it’s similar to the ROS1 Navigation, please refer to the Configuration Guide of Navigation2 or the ROS Navigation Tuning Guide by Kaiyu Zheng for more details.
 
 Reference:
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation>
 
-Note: yaml file location is different in this guide
+Note: The YAML file location is different in this guide
  
 ### Costmap Parameters
 *Parameters defined in: `turtlebot3_navigation2/param/${TB3_MODEL}.yaml`*
@@ -424,7 +617,7 @@ The above manual might help you if you are not comfortable with the provided ins
 
 
 
-## Preparing ROS 2 environment for your PC as ‘Remote PC’
+## Preparing ROS 2 environment for your PC as ‘Remote PC’ without Docker. (Note: We will not support this approach anymore)
 
 1) Install Ubuntu 20.04.2.0 LTS (Focal Fossa, 64bit, Desktop). Note that Virtual Machines and WSL2 environments are not officially supported by our class. 
 
