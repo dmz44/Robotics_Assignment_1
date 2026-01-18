@@ -6,11 +6,13 @@
 
 ## Introduction
 
-Welcome to CS 4379K / CS 5342. We prepared a series of programming assignments to teach you how to program a mobile manipulator to perform a task. Each assignment is a milestone towards programming a robot to perform the task. In the first milestone, we intend to give you an idea of how to interact with ROBOTIS’ Turtlebot3 waffle Pi with a Manipulator Arm using the Robot Operating System 2 (ROS2).
+Welcome to CS 4379K / CS 5342. We prepared a series of programming assignments to teach you how to program a mobile manipulator to perform a task. Each assignment is a milestone towards programming a robot to perform the task. In the first milestone, we intend to give you an idea of how to interact with ROBOTIS’ Turtlebot3 Waffle Pi with a Manipulator Arm using the Robot Operating System 2 (ROS2).
 
-The first milestone is about simulating the mobile base (Turtlebot 3 Waffle Pi) in Gazebo, and running teleoperation, SLAM, and Navigation nodes. This verifies you have a working remote-pc setup for simulating turtlebot3, as well as controlling the physical robot in the future milestone assignments. This environment should also allow you to explore communication interfaces in ROS2 that will be useful in future milestones assignments. 
+The first milestone is about simulating the mobile base (Turtlebot 3 Waffle Pi) in Gazebo, and running teleoperation, SLAM, and Navigation nodes. This verifies you have a working remote PC setup for simulating turtlebot3, as well as controlling the physical robot in future milestone assignments. This environment should also allow you to explore communication interfaces in ROS2 that will be useful in future milestones assignments. 
 
 To do this, you will deploy our pre-configured Docker container that sets up all the software that is required for the assignment.
+Please refer to the following video for an explanation of what a Docker container environment is. 
+[https://docs.ros.org/en/humble/Tutorials.html](https://www.youtube.com/watch?v=Gjnup-PuquQ)
 
 You might find the official tutorial on ROS 2 Humble useful in this course:
 [https://docs.ros.org/en/humble/Tutorials.html](https://docs.ros.org/en/humble/Tutorials.html)
@@ -26,16 +28,14 @@ You need to demonstrate that you have a working setup and can operate the turtle
 
 #### v1.2-> v1.3 
 - Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
+- **Major Update:** Migrated remote PC environment to Ubuntu 22.04 and ROS 2 Humble.
 
 #### v1.1-> v1.2 
 - Instruction updated to clarify how to modify parameters for SLAM and Navigation.
-- Fix done to the provided NUC to support modifying parameters without sudo.
-- Added sudo password for NUC. Please do not abuse this privilege.
 
 #### v1.0-> v1.1 
 - Styling updates
 - Part 1 - Remote PC Setup
-
 --- 
 
 # Part 1 - Environment Setup
@@ -80,9 +80,11 @@ docker compose up -d --build
 
 ## How to use Docker
 
-You should start the container itself every time you reboot the computer.
+You should start the container itself every time you reboot the computer. Please refer to **Build and Start the Container:**.
 
-Once the container is running, you can enter it and run the simulation examples. 
+Once the container is running, you can enter it and run the simulation examples. You can enter it in multiple terminal windows to get multiple terminal windows of the container.
+
+*For those not familiar with Docker, you need to enter the container and use the container's terminal/shell, or the software given in milestones will not run!*
 
 1. **Enable GUI Permissions:**
 Since the simulation runs inside Docker but displays on your host screen, you need to allow local connections to the X server:
@@ -115,6 +117,11 @@ When you are finished, you can stop the container from your host terminal:
 docker compose down
 
 ```
+5. **Reminder: Docker Images are "Immutable" i.e., it resets everytime you compose down**
+However, for temporary changes such as changes to parameter files, it is ok to do it within the shell
+   
+7. **Reminder: Please place all your working files, such as the Python file, in the shared folder**
+
 
 # Part 2 - Testing Your Setup Through Simulation
 
@@ -184,8 +191,8 @@ Further along the road, you might not like how the SLAM software behaves and wan
 
 **[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
 
-    # Change path corresponding to your group's number
-    cd /home/group#/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    vi turtlebot3_2d.lua
 
 **[Remote PC]** Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
@@ -206,7 +213,7 @@ In this assignment, you will demonstrate understanding of parameters in ROS2 sof
 
 The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via a Lua file.
 
-Below options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ). For more details about each options, please refer to the Cartographer ROS official documentation.
+The options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ.) For more details about each option, please refer to the Cartographer ROS official documentation.
 
 * `MAP_BUILDER.use_trajectory_builder_2d`
     * This option sets the type of SLAM.
@@ -272,22 +279,19 @@ Recall from SLAM that you can tune parameters. You can also tune Navigation para
 
 ## How to Launch with Modified Navigation 2 Parameters
 
-Further along the road, you might not like how the Navigation software behaves and want to change its behavior by modifying certain Navigation 2 parameters. Please read the tuning guide before trying to follow this section. For people using their own PC, please also refer to the last section of the appendix.
+Further along the road, you might not like how the Navigation software behaves and want to change its behavior by modifying certain Navigation 2 parameters. Please read the tuning guide before trying to follow this section. 
 
 **[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
 
-    # Change path corresponding to your group's number
-    cd /home/group#/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
  **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-
-
 **[Remote PC]** Change your own group’s Lua script.
 
-    vi group1_turtlebot3.yaml
+    vi turtlebot3.yaml 
 
 **[Remote PC]** Load your custom configuration YAML file by changing the launch command
 
@@ -434,7 +438,7 @@ The following instructions are based on a manual provided by the manufacturer, R
 **(Original URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
-You can also get away from using Docker by following the instructions from the above URL to install robot packages locally on ubuntu 22.04 PC for milestones 1 to 3. However, Artificial Intelligence materials from Milestones 4 to 6 are not supported by the local installation. 
+For your information, you can also get away from using Docker by following the instructions from the above URL to install robot packages locally on **Ubuntu 22.04** PC for milestones 1 to 3. However, Artificial Intelligence materials from Milestones 4 to 6 are not supported by the local installation. 
 
 ## Preparing ROS 2 environment for your PC as ‘Remote PC’ for Docker. (Note: if you choose to develop with your own PC, we will not troubleshoot or support your environment)
 
@@ -442,7 +446,7 @@ You can also get away from using Docker by following the instructions from the a
 
     [<https://releases.ubuntu.com/focal/> ](https://ubuntu.com/download/desktop)
 
-2) **Install some software on the remote PC**:
+2) **Install essential software on your PC**:
 
       sudo apt -y install vim
       sudo apt -y install net-tools
@@ -500,7 +504,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 
 9) **Manage Docker as a non-root user:**
-To avoid typing `sudo` for every docker command, add your user to the docker group:
+To avoid typing `sudo` for every Docker command, add your user to the Docker group:
 ```bash
 sudo usermod -aG docker $USER
 newgrp docker
@@ -557,7 +561,8 @@ docker compose up -d --build
 ```
 
 
-*Note: This process may take long time depending on your internet speed as it downloads ROS 2 Humble and builds the simulation packages.*
+*Note: This process may take a long time depending on your internet speed as it downloads ROS 2 Humble and builds the simulation packages.*
+
 16) **Enable GUI Permissions:**
 Since the simulation runs inside Docker but displays on your host screen, you need to allow local connections to the X server:
 ```bash
