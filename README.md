@@ -12,12 +12,15 @@ The first milestone is about simulating the mobile base (Turtlebot 3 Waffle Pi) 
 
 To do this, you will deploy our pre-configured Docker container that sets up all the software that is required for the assignment.
 Please refer to the following video for an explanation of what a Docker container environment is. 
-[https://docs.ros.org/en/humble/Tutorials.html](https://www.youtube.com/watch?v=Gjnup-PuquQ)
+
+[https://www.youtube.com/watch?v=Gjnup-PuquQ](https://www.youtube.com/watch?v=Gjnup-PuquQ)
 
 You might find the official tutorial on ROS 2 Humble useful in this course:
+
 [https://docs.ros.org/en/humble/Tutorials.html](https://docs.ros.org/en/humble/Tutorials.html)
 
 You might find this video a useful overview of the requirements of Milestone 1.
+
 <https://www.youtube.com/watch?v=8w3xhG1GPdo>
 
 ### Assignment Requirement
@@ -117,11 +120,44 @@ When you are finished, you can stop the container from your host terminal:
 docker compose down
 
 ```
-5. **Reminder: Docker Images are "Immutable" i.e., it resets everytime you compose down**
-However, for temporary changes such as changes to parameter files, it is ok to do it within the shell
-   
-7. **Reminder: Please place all your working files, such as the Python file, in the shared folder**
+5. **Critical Concept: The Container is Temporary (Immutable)**
 
+It is vital to understand that a Docker container is **ephemeral**. This means it resets to its original "factory settings" every time you delete it (via `docker compose down`) and restart it.
+
+* **What is lost:** If you run `sudo apt install <package>` or create a file inside the container's home folder (e.g., `/root/`), those changes **will vanish** when the container is stopped.
+* **What is safe:** Only files stored in the **Shared Folder** (see Section 7) are safe.
+* **Temporary Testing:** It is perfectly fine to install a package manually or edit a system config file inside the container to test a fix. Just remember that you must repeat that step next time, or make the change permanent (see Section 8).
+
+6. **Restarting the Container**
+
+If you just want to "pause" your work without losing the container's temporary state, you can use `docker compose stop` and `docker compose start`. However, for this course, we generally recommend fully shutting down (`down`) to clear simulation glitches.
+
+7. **The Shared Folder: Where to Save Your Code**
+
+To prevent losing your homework, we use a feature called **Volume Mapping** (Shared Folders). This creates a direct "tunnel" between a specific folder on your real computer (Host) and a folder inside the Docker container.
+
+* **On your Host:** The folder is `./cs4379k_ws/my_code` (or similar, depending on where you cloned the repo).
+* **Inside Docker:** The folder is mapped to `/root/turtlebot3_ws/src/my_code`.
+
+**How to use it:**
+
+1. Create your Python scripts and ROS packages **inside this folder**.
+2. If you edit a file in this folder on your laptop (using VS Code, Sublime, etc.), the change appears **instantly** inside the Docker container.
+3. Even if you delete the container completely, files in this folder remain safe on your laptop.
+
+8. **Advanced: Modifying the Docker Image (Rebuilding)**
+
+Let's say you need a new system library (e.g., `scipy` or a new `apt` package) permanently on your Docker Image. We can rebuild the Docker image by the following:
+
+1. **Edit the Dockerfile:** Open the `Dockerfile` in your host text editor. Add the installation command (e.g., `RUN pip3 install scipy`) in the appropriate section.
+2. **Rebuild the Container:** You must tell Docker to rebuild the image based on your changes. Run the following command from your host terminal:
+```bash
+docker compose up -d --build
+
+```
+
+
+The `--build` flag forces Docker to read the `Dockerfile` again and install the new software.
 
 # Part 2 - Testing Your Setup Through Simulation
 
