@@ -140,10 +140,9 @@ To prevent losing your homework, we use a feature called **Volume Mapping** (Sha
 
 **How to use it:**
 
-1. Create your Python scripts and ROS packages **inside this folder**.
-2. If you edit a file in this folder on your laptop (using VS Code, Sublime, etc.), the change appears **instantly** inside the Docker container.
-3. Even if you delete the container completely, files in this folder remain safe on your laptop.
-
+1) Create your Python scripts and ROS packages **inside this folder**.
+2) If you edit a file in this folder on your laptop (using VS Code, Sublime, etc.), the change appears **instantly** inside the Docker container.
+3) Even if you delete the container completely, files in this folder remain safe on your laptop.
 
 8. **Advanced: Modifying the Docker Image (Rebuilding)**
 
@@ -151,11 +150,11 @@ Let's say you need a new system library (e.g., `scipy` or a new `apt` package) p
 
 1. **Edit the Dockerfile:** Open the `Dockerfile` in your host text editor. Add the installation command (e.g., `RUN pip3 install scipy`) in the appropriate section.
 2. **Rebuild the Container:** You must tell Docker to rebuild the image based on your changes. Run the following command from your host terminal:
+
 ```bash
 docker compose up -d --build
 
 ```
-
 
 The `--build` flag forces Docker to read the `Dockerfile` again and install the new software.
 
