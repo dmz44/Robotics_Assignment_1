@@ -29,7 +29,7 @@ For all questions regarding milestone assignments and the robot, you should cont
 
 ### Assignment Requirement
 
-You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Only one member from each group will submit all videos necessary to demonstrate that your group has completed all requirements. 
+You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Only one member from each group will submit all videos necessary to demonstrate that your group has completed all requirements. Please refer to the rules for the Robot room usage if you are using our laptop for the assignment requirement. 
 
 ### Major Change Log
 
