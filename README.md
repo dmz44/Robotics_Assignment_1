@@ -517,7 +517,7 @@ Explain Your Findings: In your narration, clearly state:
 
 # Appendix
 
-# How to Install Required Software on Your Own PC (Not officially supported)
+# [Optional] How to Install Required Software on Your Own PC [Not Supported]
 
 While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited to support multiple student groups. 
 
