@@ -184,11 +184,11 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-**[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first.
+**[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
     ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
         
- **[Remote PC]** Launch the keyboard teleoperation node.
+ **[Remote PC]** Launch the keyboard teleoperation node. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
         
@@ -226,15 +226,19 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-**[Remote PC]** Launch the slam node using the following command.
+**[Remote PC]** Launch the slam node using the following command. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py
         
-**[Remote PC]** Launch the keyboard teleoperation node. Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
+**[Remote PC]** Launch the keyboard teleoperation node. 
+
+Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+
+Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
-**[Remote PC]** Open a new terminal on Remote PC. Run the nav2_map_server to save the current map on RViz.
+**[Remote PC]** Open a new terminal and another Docker shell on Remote PC. Run the nav2_map_server to save the current map on RViz.
 
     ros2 run nav2_map_server map_saver_cli -f ~/map
 
@@ -254,7 +258,7 @@ docker exec -it remote_pc_humble bash
 
 ```
 
-Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
+Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
 Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
@@ -352,10 +356,6 @@ Recall from SLAM that you can tune parameters. You can also tune Navigation para
 
 Further along the road, you might not like how the Navigation software behaves and want to change its behavior by modifying certain Navigation 2 parameters. Please read the tuning guide before trying to follow this section. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
-
-    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
-
 **[Remote PC]** **Enter the Container:**
 
 ```bash
@@ -365,7 +365,11 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
+
+    cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+
+**[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
@@ -373,7 +377,7 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 
     vi turtlebot3.yaml 
 
-**[Remote PC]** Launch another Docker shell and load your custom configuration YAML file by changing the launch command
+**[Remote PC]** Inside the Docker shell, load your custom configuration YAML file by changing the launch command
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml 
 
@@ -525,14 +529,18 @@ For your information, you can also get away from using Docker by following the i
 
 1) **Install Ubuntu 24.04 LTS (64bit, Desktop)**. We recommend not using WSL2 or any other virtualization.
 
+```bash
     [<https://releases.ubuntu.com/focal/> ](https://ubuntu.com/download/desktop)
+```
 
 2) **Install essential software on your PC**:
 
+```bash
       sudo apt -y install vim
       sudo apt -y install net-tools
       sudo apt -y install openssh-server
       sudo apt -y install curl
+```
 
 You may want to remap the shortcut keys of Copy and Paste in your terminal.
 
@@ -544,20 +552,24 @@ Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi
 
 4) **Update Ubuntu software**:
 
+```bash
       sudo apt-get update
       sudo apt-get upgrade
+```
 
 Now, we need to set up the Docker engine on your host machine. Follow these steps to install Docker from the official repository.
     [<https://docs.docker.com/engine/install/ubuntu//> ](https://docs.docker.com/engine/install/ubuntu/)
 
 
 5) **Remove conflicting packages (if any):**
+
 ```bash
 sudo apt-get remove docker docker-engine docker.io containerd runc
 
 ```
 
 6) **Set up the repository:**
+
 ```bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -568,6 +580,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 ```
 
 7) **Add the repository to Apt sources:**
+
 ```bash
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
@@ -578,6 +591,7 @@ sudo apt-get update
 ```
 
 8) **Install Docker packages:**
+
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
@@ -586,6 +600,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 9) **Manage Docker as a non-root user:**
 To avoid typing `sudo` for every Docker command, add your user to the Docker group:
+
 ```bash
 sudo usermod -aG docker $USER
 newgrp docker
@@ -594,6 +609,7 @@ newgrp docker
 
 
 10) **Verify Installation:**
+
 ```bash
 docker run hello-world
 
