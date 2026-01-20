@@ -521,6 +521,8 @@ Explain Your Findings: In your narration, clearly state:
 
 While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited to support multiple student groups. 
 
+The hardware requirement is hardware capable of supporting the Ubuntu 24 Operating System with a relatively modern Nvidia GPU, a microphone, and a speaker.
+
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Humble.  Please select Humble on the website.
 
 **(Original URL)**
@@ -535,16 +537,16 @@ For your information, you can also get away from using Docker by following the i
 1) **Install Ubuntu 24.04 LTS (64bit, Desktop)**. We recommend not using WSL2 or any other virtualization.
 
 ```bash
-    [<https://releases.ubuntu.com/focal/> ](https://ubuntu.com/download/desktop)
+[<https://releases.ubuntu.com/focal/> ](https://ubuntu.com/download/desktop)
 ```
 
 2) **Install essential software on your PC**:
 
 ```bash
-      sudo apt -y install vim
-      sudo apt -y install net-tools
-      sudo apt -y install openssh-server
-      sudo apt -y install curl
+sudo apt -y install vim
+sudo apt -y install net-tools
+sudo apt -y install openssh-server
+sudo apt -y install curl
 ```
 
 You may want to remap the shortcut keys of Copy and Paste in your terminal.
@@ -558,8 +560,8 @@ Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi
 4) **Update Ubuntu software**:
 
 ```bash
-      sudo apt-get update
-      sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 Now, we need to set up the Docker engine on your host machine. Follow these steps to install Docker from the official repository.
@@ -570,7 +572,6 @@ Now, we need to set up the Docker engine on your host machine. Follow these step
 
 ```bash
 sudo apt-get remove docker docker-engine docker.io containerd runc
-
 ```
 
 6) **Set up the repository:**
@@ -631,7 +632,7 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dear
 
 ```
 
-12) **Install the nvidia toolkit:**
+12) **Install the NVIDIA toolkit:**
 ```bash
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
