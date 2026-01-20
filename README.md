@@ -74,7 +74,7 @@ git clone [https://github.com/YOUR_USERNAME/turtlebot_docker_humble.git .](https
 We have provided a `docker-compose.yml` file that automates the build process and sets up the necessary volume mappings (shared folders) and display settings.
 ```bash
 # Build and start the container in detached mode
-docker compose up -d --build
+sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
 
 ```
 
