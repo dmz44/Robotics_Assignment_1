@@ -1,6 +1,6 @@
 # 2026 CS 4379K / CS 5342 Introduction to Autonomous Robotics, Robotics and Autonomous Systems
 
-## Programming Assignment: Milestone 1 (V1.3)
+## Programming Assignment: Milestone 1 (V1.0)
 
 **Authors:** Minhyuk Park and Tsz-Chiu Au
 
@@ -23,22 +23,20 @@ You might find this video a useful overview of the requirements of Milestone 1.
 
 <https://www.youtube.com/watch?v=8w3xhG1GPdo>
 
+For all questions regarding milestone assignments and the robot, you should contact the Doctoral Instructor Assistant via direct message on Slack. Please do not contact the Instructor with questions regarding the milestone assignments. Also, the Instructor and the Doctoral Instructor Assistant will not respond to emails or other communication methods other than Slack. This is the URL for Slack for this course. 
+
+<https://spring2026txstrobot.slack.com/>
+
 ### Assignment Requirement
 
-You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making a video. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Each group will submit one video. 
+You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Only one member from each group will submit all videos necessary to demonstrate that your group has completed all requirements. 
 
 ### Major Change Log
 
-#### v1.2-> v1.3 
+#### v1.0
 - Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
 - **Major Update:** Migrated remote PC environment to Ubuntu 22.04 and ROS 2 Humble.
 
-#### v1.1-> v1.2 
-- Instruction updated to clarify how to modify parameters for SLAM and Navigation.
-
-#### v1.0-> v1.1 
-- Styling updates
-- Part 1 - Remote PC Setup
 --- 
 
 # Part 1 - Environment Setup
@@ -55,7 +53,7 @@ The above manual might help you if you are not comfortable with the provided ins
 
 Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
-For the provided laptop, all the programs you need are preinstalled. 
+For the provided laptop, all the programs you need are preinstalled. However, you still need to set up a Docker environment for your account. For your first login, you will set the password for the account. Please do not attempt to set a password or log onto a group number other than your assigned group number. 
 
 # Part 1: Container Setup and How to Use Docker
 
@@ -65,7 +63,8 @@ For the provided laptop, all the programs you need are preinstalled.
 ```bash
 mkdir -p ~/txst_robotics
 cd ~/txst_robotics
-git clone [https://github.com/YOUR_USERNAME/turtlebot_docker_humble.git .](https://github.com/dmz44/Robotics_Assignment_1)
+mkdir -p ~/my_code
+git clone https://github.com/dmz44/Robotics_Assignment_1.git.
 
 ```
 
@@ -145,6 +144,7 @@ To prevent losing your homework, we use a feature called **Volume Mapping** (Sha
 2. If you edit a file in this folder on your laptop (using VS Code, Sublime, etc.), the change appears **instantly** inside the Docker container.
 3. Even if you delete the container completely, files in this folder remain safe on your laptop.
 
+
 8. **Advanced: Modifying the Docker Image (Rebuilding)**
 
 Let's say you need a new system library (e.g., `scipy` or a new `apt` package) permanently on your Docker Image. We can rebuild the Docker image by the following:
@@ -171,6 +171,15 @@ This manual is based on the following manual for Humble.
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/manipulation/#simulation>
 
 This manual assumes you have completed Part 1 on setting up your remote PC. Please enter the container and work within the container.
+
+**[Remote PC]** **Enter the Container:**
+
+```bash
+docker exec -it remote_pc_humble bash
+
+```
+
+Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
 
 **[Remote PC]** Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
 
@@ -205,6 +214,15 @@ Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm us
 
 Close all terminals if you are coming from previous sections.
 
+**[Remote PC]** **Enter the Container:**
+
+```bash
+docker exec -it remote_pc_humble bash
+
+```
+
+Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
+
 **[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
@@ -230,11 +248,20 @@ Further along the road, you might not like how the SLAM software behaves and wan
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
     vi turtlebot3_2d.lua
 
-**[Remote PC]** Close all terminals. Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
+**[Remote PC]** Close all terminals. Open another Docker shell. 
+
+```bash
+docker exec -it remote_pc_humble bash
+
+```
+
+Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
+
+Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
-**[Remote PC]** Launch cartographer with your modified Lua file.
+**[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py 
 
@@ -295,11 +322,20 @@ Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm us
 
 Close all terminals if you are coming from previous sections.
 
+**[Remote PC]** **Enter the Container:**
+
+```bash
+docker exec -it remote_pc_humble bash
+
+```
+
+Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
+
 **[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
- **[Remote PC]** Open a terminal on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
+ **[Remote PC]** Open another Docker shell on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml
 
@@ -321,7 +357,16 @@ Further along the road, you might not like how the Navigation software behaves a
 
     cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
 
- **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+**[Remote PC]** **Enter the Container:**
+
+```bash
+docker exec -it remote_pc_humble bash
+
+```
+
+Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
+
+**[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
@@ -329,7 +374,7 @@ Further along the road, you might not like how the Navigation software behaves a
 
     vi turtlebot3.yaml 
 
-**[Remote PC]** Load your custom configuration YAML file by changing the launch command
+**[Remote PC]** Launch another Docker shell and load your custom configuration YAML file by changing the launch command
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml 
 
@@ -412,12 +457,13 @@ Note: The YAML file location is different in this guide
   * Sets the forward simulation time in seconds.
   * Setting this too small makes it difficult for the robot to pass narrow spaces, while a large value limits dynamic turns. *You can observe the differences in the length of the yellow line in the simulation path.*
 
-# Video Demo Requirements (Approximately 2.5 Minutes)
+# Video Demo Requirements 
 
-Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The maximum total length of the video clips is approximately two and a half minutes. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please clearly state the names of all group members.
+Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The estimated total length of the video clips is approximately two and a half minutes, but  going over the total duration for all videos is fine. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
 
 Your recording setup should be organized to show all relevant windows at once: the terminal(s) used for launching nodes, the Gazebo simulation window, and the RViz visualization window.
 
+You do not need to edit the videos, and uploading raw videos will suffice. You can split the video into multiple videos and submit them separately if the video is too long.  
 The demonstration must clearly show the successful completion of the following four parts in order. 
 
 ## Part A: Teleoperation 
@@ -584,7 +630,8 @@ sudo systemctl restart docker
 ```bash
 mkdir -p ~/txst_robotics
 cd ~/txst_robotics
-git clone [https://github.com/YOUR_USERNAME/turtlebot_docker_humble.git .](https://github.com/dmz44/Robotics_Assignment_1)
+mkdir -p ~/my_code
+git clone https://github.com/dmz44/Robotics_Assignment_1.git.
 
 ```
 
