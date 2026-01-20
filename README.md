@@ -246,11 +246,6 @@ Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” 
 
 Further along the road, you might not like how the SLAM software behaves and want to change its behavior by modifying certain SLAM parameters. Please read the tuning guide before trying to follow this section. For people using their own PC, please also refer to the last section of the appendix.
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
-
-    cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
-    vi turtlebot3_2d.lua
-
 **[Remote PC]** Close all terminals. Open another Docker shell. 
 
 ```bash
@@ -260,7 +255,12 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
+**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
+
+    cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
+    vi turtlebot3_2d.lua
+
+**[Remote PC]** After editing the lua script, bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
@@ -334,7 +334,7 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
+**[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command inside the Docker shell.
 
     ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
 
@@ -462,7 +462,7 @@ Note: The YAML file location is different in this guide
 
 # Video Demo Requirements 
 
-Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The estimated total length of the video clips is approximately two and a half minutes, but  going over the total duration for all videos is fine. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
+Your group will upload one or more video clips (e.g., in MP4 format) to Canvas. The estimated total length of the video clips is approximately two and a half minutes, but  going over that time is fine. One group member should narrate the video, explaining each step as it's performed. At the beginning of the first video clip, please show every group member's face and state the names of all group members.
 
 Your recording setup should be organized to show all relevant windows at once: the terminal(s) used for launching nodes, the Gazebo simulation window, and the RViz visualization window.
 
@@ -488,7 +488,7 @@ This part demonstrates your ability to map an unknown environment.
 
 ## Part C: Autonomous Navigation 
 
-This final part shows you can use your generated map to have the robot navigate autonomously to specific goals.
+This part shows you can use your generated map to have the robot navigate autonomously to specific goals.
 
 Launch Navigation: Relaunch the simulation and start the Navigation2 stack, making sure to load the map you saved in Part B.
 Localize the Robot: In RViz, confirm the robot's initial position is correct. If it's not, use the "2D Pose Estimate" tool to set its correct starting position and orientation on the map.
@@ -500,7 +500,7 @@ Localize the Robot: In RViz, confirm the robot's initial position is correct. If
 
 ## Part D: Parameter Investigation 
 
-This section demonstrates that you have explored the configuration files and understand how tuning parameters can affect robot behavior.
+This final section demonstrates that you have explored the configuration files and understand how tuning parameters can affect robot behavior.
 
 - Choose a Parameter: Select one parameter from either the SLAM configuration (turtlebot3.lua) or the Navigation2 configuration (turtlebot3.yaml). Note: Exact Lua and YAML file names are different.
 - Modify It: Change its value significantly (e.g., double or halve the default value).
@@ -514,7 +514,7 @@ Explain Your Findings: In your narration, clearly state:
 
 # Appendix
 
-# How to install software on your own PC (Not officially supported)
+# How to Install Required Software on Your Own PC (Not officially supported)
 
 While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited to support multiple student groups. 
 
@@ -525,7 +525,9 @@ The following instructions are based on a manual provided by the manufacturer, R
 
 For your information, you can also get away from using Docker by following the instructions from the above URL to install robot packages locally on **Ubuntu 22.04** PC for milestones 1 to 3. However, Artificial Intelligence materials from Milestones 4 to 6 are not supported by the local installation. 
 
-## Preparing ROS 2 environment for your PC as ‘Remote PC’ for Docker. (Note: if you choose to develop with your own PC, we will not troubleshoot or support your environment)
+## Preparing ROS 2 Environment for Your PC as ‘Remote PC’ with Docker. 
+
+### (Note: if you choose to develop with your own PC, we will not troubleshoot or support your environment)
 
 1) **Install Ubuntu 24.04 LTS (64bit, Desktop)**. We recommend not using WSL2 or any other virtualization.
 
@@ -626,7 +628,7 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dear
 
 ```
 
-12) **Install the toolkit:**
+12) **Install the nvidia toolkit:**
 ```bash
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
