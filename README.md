@@ -68,7 +68,6 @@ git clone https://github.com/dmz44/Robotics_Assignment_1.git.
 
 ```
 
-
 2. **Build and Start the Container:**
 We have provided a `docker-compose.yml` file that automates the build process and sets up the necessary volume mappings (shared folders) and display settings.
 ```bash
@@ -78,7 +77,6 @@ sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
 ```
 
 *Note: This process may take a long time depending on your internet speed as it downloads ROS 2 Humble and builds the simulation packages.*
-
 
 ## How to use Docker
 
@@ -94,16 +92,21 @@ Since the simulation runs inside Docker but displays on your host screen, you ne
 xhost +local:root
 
 ```
-
 *You need to run this command again if you restart your computer.*
 
-2. **Enter the Container:**
+2. **Start the Container. You only need to do it once every boot unless you stop the environment by composing down:**
+
+```bash
+docker compose up -d
+```
+
+3. **Enter the Container:**
 ```bash
 docker exec -it remote_pc_humble bash
 
 ```
 
-3. **Verify ROS 2 Environment:**
+4. **Verify ROS 2 Environment:**
 Inside the container, verify that ROS 2 Humble is active:
 ```bash
 printenv | grep ROS
@@ -113,25 +116,25 @@ printenv | grep ROS
 
 ```
 
-4. **Stopping the Environment:**
+5. **Stopping the Environment:**
 When you are finished, you can stop the container from your host terminal:
 ```bash
 docker compose down
 
 ```
-5. **Critical Concept: The Container is Temporary (Immutable)**
+6. **Critical Concept: The Container is Temporary (Immutable)**
 
 It is vital to understand that a Docker container is **ephemeral**. This means it resets to its original "factory settings" every time you delete it (via `docker compose down`) and restart it.
 
 * **What is lost:** If you run `sudo apt install <package>` or create a file inside the container's home folder (e.g., `/root/`), those changes **will vanish** when the container is stopped.
-* **What is safe:** Only files stored in the **Shared Folder** (see Section 7) are safe.
-* **Temporary Testing:** It is perfectly fine to install a package manually or edit a system config file inside the container to test a fix. Just remember that you must repeat that step next time, or make the change permanent (see Section 8).
+* **What is safe:** Only files stored in the **Shared Folder** (see Section 8) are safe.
+* **Temporary Testing:** It is perfectly fine to install a package manually or edit a system config file inside the container to test a fix. Just remember that you must repeat that step next time, or make the change permanent (see Section 9).
 
-6. **Restarting the Container**
+7. **Restarting the Container**
 
 If you just want to "pause" your work without losing the container's temporary state, you can use `docker compose stop` and `docker compose start`. However, for this course, we generally recommend fully shutting down (`down`) to clear simulation glitches.
 
-7. **The Shared Folder: Where to Save Your Code**
+8. **The Shared Folder: Where to Save Your Code**
 
 To prevent losing your homework, we use a feature called **Volume Mapping** (Shared Folders). This creates a direct "tunnel" between a specific folder on your real computer (Host) and a folder inside the Docker container.
 
@@ -144,7 +147,7 @@ To prevent losing your homework, we use a feature called **Volume Mapping** (Sha
 2) If you edit a file in this folder on your laptop (using VS Code, Sublime, etc.), the change appears **instantly** inside the Docker container.
 3) Even if you delete the container completely, files in this folder remain safe on your laptop.
 
-8. **Advanced: Modifying the Docker Image (Rebuilding)**
+9. **Advanced: Modifying the Docker Image (Rebuilding)**
 
 Let's say you need a new system library (e.g., `scipy` or a new `apt` package) permanently on your Docker Image. We can rebuild the Docker image by the following:
 
