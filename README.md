@@ -63,7 +63,7 @@ For the provided laptop, all the programs you need are preinstalled. However, yo
 ```bash
 mkdir -p ~/txst_robotics
 cd ~/txst_robotics
-mkdir -p ~/my_code
+mkdir -p my_code
 git clone https://github.com/dmz44/Robotics_Assignment_1.git.
 
 ```
