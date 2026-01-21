@@ -15,7 +15,7 @@ Please refer to the following video for an explanation of what a Docker containe
 
 [https://www.youtube.com/watch?v=Gjnup-PuquQ](https://www.youtube.com/watch?v=Gjnup-PuquQ)
 
-You might find the official tutorial on ROS 2 Humble useful in this course:
+Robot Operating System version is associated with Ubuntu Long-Term Support Versions (e.g. Ubuntu 22.04 with Humble). We are using **ROS 2 Humble in a Docker environment**. You might find the official tutorial on ROS 2 Humble useful in this course:
 
 [https://docs.ros.org/en/humble/Tutorials.html](https://docs.ros.org/en/humble/Tutorials.html)
 
@@ -23,9 +23,13 @@ You might find this video a useful overview of the requirements of Milestone 1.
 
 <https://www.youtube.com/watch?v=8w3xhG1GPdo>
 
-For all questions regarding milestone assignments and the robot, you should contact the Doctoral Instructor Assistant via direct message on Slack. Please do not contact the Instructor with questions regarding the milestone assignments. Also, the Instructor and the Doctoral Instructor Assistant will not respond to emails or other communication methods other than Slack. This is the URL for Slack for this course. 
+For all questions regarding milestone assignments and the robot, **you should contact the Doctoral Instructor Assistant via direct message on Slack**. Please do not contact the Instructor with questions regarding the milestone assignments. This is the URL for Slack for this course. 
 
 <https://spring2026txstrobot.slack.com/>
+
+We use vim (vi) for text editing in a terminal environment. Please refer to the tutorial for Vim if you are not familiar with vim environment for editing documents. 
+
+https://opensource.com/article/19/3/getting-started-vim
 
 ### Assignment Requirement
 
