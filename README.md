@@ -91,7 +91,7 @@ cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 We have provided a `docker-compose.yml` file that automates the build process and sets up the necessary volume mappings (shared folders) and display settings.
 ```bash
 # Build and start the container in detached mode
-sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
+HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
 
 ```
 
@@ -117,7 +117,7 @@ xhost +local:root
 
 ```bash
 # Build and start the container in detached mode without building. 
-sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d 
+HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d 
 
 ```
 
@@ -266,7 +266,11 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 **[Remote PC]** Launch the slam node using the following command. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py
-        
+
+**[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+
+    ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
+    
 **[Remote PC]** Launch the keyboard teleoperation node. 
 
 Open another Docker shell by repeating entering the container on another terminal window and type the following command.
@@ -299,7 +303,7 @@ Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be a
 
 **[Remote PC]** After editing the lua script, bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
-    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
 **[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file.
 
@@ -373,7 +377,7 @@ Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be a
 
 **[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command inside the Docker shell.
 
-    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
  **[Remote PC]** Open another Docker shell on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
 
@@ -402,17 +406,14 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
+**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. 
 
     cd ~ /turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
+    vi turtlebot3.yaml
 
 **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
-
-**[Remote PC]** Change your own group’s Lua script.
-
-    vi turtlebot3.yaml 
 
 **[Remote PC]** Inside the Docker shell, load your custom configuration YAML file by changing the launch command
 
@@ -430,7 +431,7 @@ Reference:
 Note: The YAML file location is different in this guide
  
 ### Costmap Parameters
-*Parameters defined in: `turtlebot3_navigation2/param/${TB3_MODEL}.yaml`*
+*Parameters defined in: `${TB3_MODEL}.yaml`*
 
 * `inflation_layer.inflation_radius`
   * This parameter creates an inflation area around the obstacle. The path is planned so that it does not cross this area. It is safe to set this larger than the robot radius. For more information, please refer to the `costmap_2d` wiki.
@@ -440,7 +441,7 @@ Note: The YAML file location is different in this guide
   * The optimal path for the robot to pass through obstacles is to take a median path between them. Setting a smaller value for this parameter will create a path farther from the obstacles.
 
 ### dwb_controller
-*Parameters defined in: `turtlebot3_navigation2/param/${TB3_MODEL}.yaml`*
+*Parameters defined in: `${TB3_MODEL}.yaml`*
 
 * `max_vel_x`
   * Sets the maximum value of translational velocity.
