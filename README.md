@@ -218,9 +218,22 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
         
 The following keys are used to control the TurtleBot3. Try moving the turtlebot in the simulated space. Use O, K, L, and; keys to drive the TurtleBot3 platform.
 
-    Use o|k|l|; keys to move the turtlebot base and use the 'space' key to stop the base        
-    Use s|x|z|c|a|d|f|v keys to Cartesian jog
-    Use 1|2|3|4|q|w|e|r keys to joint jog.
+    Reading from keyboard
+    ---------------------------
+    Joint Control Keys:
+      1/q: Joint1 +/-
+      2/w: Joint2 +/-
+      3/e: Joint3 +/-
+      4/r: Joint4 +/-
+    Use o|p to open/close the gripper.
+    
+    Command Control Keys:
+      i: Move up
+      k: Move down
+      l: Move right
+      j: Move left
+      space bar: Move stop
+    ---------------------------
     'ESC' to quit.
 
 ## SLAM Simulation
