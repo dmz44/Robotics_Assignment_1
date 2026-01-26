@@ -159,8 +159,8 @@ If you just want to "pause" your work without losing the container's temporary s
 
 To prevent losing your homework, we use a feature called **Volume Mapping** (Shared Folders). This creates a direct "tunnel" between a specific folder on your real computer (Host) and a folder inside the Docker container.
 
-* **On your Host:** The folder is `./cs4379k_ws/my_code` (or similar, depending on where you cloned the repo).
-* **Inside Docker:** The folder is mapped to `/root/turtlebot3_ws/src/my_code`.
+* **On your Host:** The folder is `~/turtlebot_docker/my_code`.
+* **Inside Docker:** The folder is mapped to `~/my_code`.
 
 **How to use it:**
 
