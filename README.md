@@ -79,11 +79,12 @@ For the provided laptop, all the programs you need are preinstalled. However, yo
 
 1. **Clone the course Docker repository:**
 ```bash
-mkdir -p ~/txst_robotics
-cd ~/txst_robotics
+mkdir -p ~/turtlebot_docker
+cd ~/turtlebot_docker
 mkdir -p my_code
 git clone https://github.com/dmz44/Robotics_Assignment_1.git.
-
+cp Robotics_Assignment_1/Dockerfile Dockerfile
+cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 ```
 
 2. **Build and Start the Container:**
@@ -115,7 +116,9 @@ xhost +local:root
 2. **Start the Container. You only need to do it once every boot unless you stop the environment by composing down:**
 
 ```bash
-docker compose up -d
+# Build and start the container in detached mode without building. 
+sudo HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d 
+
 ```
 
 3. **Enter the Container:**
