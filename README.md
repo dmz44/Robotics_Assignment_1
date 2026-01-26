@@ -206,7 +206,7 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 
 **[Remote PC]** Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
 
-    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
 **[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
@@ -261,7 +261,7 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 
 **[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
 
-    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
 **[Remote PC]** Launch the slam node using the following command. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
@@ -408,7 +408,7 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 
 **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
-    ros2 launch turtlebot3_manipulation_bringup gazebo.launch.py
+    ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
 **[Remote PC]** Change your own group’s Lua script.
 
