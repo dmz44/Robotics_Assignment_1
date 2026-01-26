@@ -33,7 +33,19 @@ https://opensource.com/article/19/3/getting-started-vim
 
 ### Assignment Requirement
 
-You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video. Once your group is done with the video demonstration that satisfies the demo requirement outlined at the end, please submit it to Canvas. Only one member from each group will submit all videos necessary to demonstrate that your group has completed all requirements. Please refer to the rules for the Robot room usage if you are using our laptop for the assignment requirement. 
+You need to demonstrate that you have a working setup and can operate the turtlebot in simulation by making videos. This will also demonstrate that you have a working setup for working with a physical turtlebot in the next milestone assignment. Refer to the demo requirement section at the end of the milestone assignment on what to include in the video.
+
+**==[SUBMISSION PROCESS]==**
+
+* **==Individual Submission:==** **==every team member must submit the video(s) separately==** to Canvas.
+* While the content of the video may be duplicated across team members, this ensures that only students who actively participated and had access to the team's files can submit.
+
+* **==Standardized Hosting (YouTube):==** To avoid issues with large file sizes (e.g., 1GB+ files), **==do not upload video files directly to Canvas.==** * Please **==upload your video(s) to YouTube as "Unlisted" or "Private"==** and submit the link(s) via a text or PDF document. This allows YouTube to handle the compression and ensures a standard viewing format.
+* **==Video Restrictions:==** To ensure the grading process is manageable:
+* **==Duration:==** Keep the demonstration to **==just a few minutes long.==** Do not submit hour-long unedited footage.
+* **==Quantity:==** Limit your submission to a maximum of **==3 videos==** that concisely cover all demo requirements.
+
+Please refer to the rules for the Robot room usage if you are using our laptop for the assignment requirement.
 
 ### Major Change Log
 
