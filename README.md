@@ -99,14 +99,14 @@ HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
 
 ## How to use Docker
 
-You should start the container itself every time you reboot the computer. Please refer to **Build and Start the Container:**.
+You should start the container itself every time you reboot the computer. Please refer to **Start the Container** step below.
 
 Once the container is running, you can enter it and run the simulation examples. You can enter it in multiple terminal windows to get multiple terminal windows of the container.
 
 *For those not familiar with Docker, you need to enter the container and use the container's terminal/shell, or the software given in milestones will not run!*
 
 1. **Enable GUI Permissions:**
-Since the simulation runs inside Docker but displays on your host screen, you need to allow local connections to the X server:
+Since the simulation runs inside Docker but displays on your host screen, you need to allow local connections to the X server. This needs to be done every boot:
 ```bash
 xhost +local:root
 
