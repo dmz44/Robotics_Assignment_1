@@ -566,10 +566,10 @@ For your information, you can also try following the instructions from the above
 1) **Install Ubuntu 24.04 LTS (64bit, Desktop)**. We recommend not using WSL2 or any other virtualization.
 
 ```bash
-[<https://releases.ubuntu.com/focal/> ](https://ubuntu.com/download/desktop)
+<https://ubuntu.com/download/desktop>
 ```
 
-2) **Install essential software on your PC**:
+2) **Install essential software on your Host PC by executing the following command on the Host Terminal Window**:
 
 ```bash
 sudo apt -y install vim
@@ -582,11 +582,11 @@ You may want to remap the shortcut keys of Copy and Paste in your terminal.
 
 3) **Set up Network**:
 
-Set up wifi connection settings to your internet, such as TXST-Bobcats wifi and Small_Blue_Wifi (for the local network environment for Turtlebot 3’s Single Board Computer)
+Set up wifi connection settings to your internet, such as TXST-Bobcats wifi and Local Wifi connection for Small_Blue_Wifi (for the local network environment for Turtlebot 3’s Single Board Computer)
 
 Run ifconfig to see the IP of remote-pc while being connected to Small_Blue_Wifi. Remember the IP as IP_OF_REMOTE_PC.
 
-4) **Update Ubuntu software**:
+4) **Update Ubuntu software for the Host PC by executing the following on the Host's Terminal Window**:
 
 ```bash
 sudo apt-get update
@@ -597,13 +597,13 @@ Now, we need to set up the Docker engine on your host machine. Follow these step
     [<https://docs.docker.com/engine/install/ubuntu//> ](https://docs.docker.com/engine/install/ubuntu/)
 
 
-5) **Remove conflicting packages (if any):**
+5) **Remove conflicting packages (if any) by executing the following on the Host's Terminal Window:**
 
 ```bash
 sudo apt-get remove docker docker-engine docker.io containerd runc
 ```
 
-6) **Set up the repository:**
+6) **Set up the repository by executing the following on the Host's Terminal Window:**
 
 ```bash
 sudo apt-get update
@@ -614,7 +614,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 ```
 
-7) **Add the repository to Apt sources:**
+7) **Add the repository to Apt sources by executing the following on the Host's Terminal Window:**
 
 ```bash
 echo \
@@ -625,7 +625,7 @@ sudo apt-get update
 
 ```
 
-8) **Install Docker packages:**
+8) **Install Docker packages by executing the following on the Host's Terminal Window:**
 
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -633,7 +633,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ```
 
 
-9) **Manage Docker as a non-root user:**
+9) **Manage Docker as a non-root user by executing the following on the Host's Terminal Window:**
 To avoid typing `sudo` for every Docker command, add your user to the Docker group:
 
 ```bash
@@ -643,14 +643,14 @@ newgrp docker
 ```
 
 
-10) **Verify Installation:** If you are getting permission errors, you might need to reboot your computer after adding your user to the Docker group. Alternatively, for a temporary solution, you can add sudo in front of all the commands for Docker. 
+10) **Verify Installation by executing the following on the Host's Terminal Window:** If you are getting permission errors, you might need to reboot your computer after adding your user to the Docker group. Alternatively, for a temporary solution, you can add sudo in front of all the commands for Docker. 
 
 ```bash
 docker run hello-world
 
 ```
 
-11) **Configure the repository for NVIDIA Container Toolkit:**
+11) **Configure the repository for NVIDIA Container Toolkit by executing the following on the Host's Terminal Window:**
 To allow the Docker container to access your GPU (essential for Gazebo simulation and AI tasks), you must install the NVIDIA Container Toolkit.
 
 ```bash
@@ -661,21 +661,21 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dear
 
 ```
 
-12) **Install the NVIDIA toolkit:**
+12) **Install the NVIDIA toolkit by executing the following on the Host's Terminal Window:**
 ```bash
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 
 ```
 
-13) **Configure Docker runtime and restart:**
+13) **Configure Docker runtime and restart by executing the following on the Host's Terminal Window:**
 ```bash
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 
 ```
 
-14) **Clone the course Docker repository:**
+14) **Clone the course Docker repository by executing the following on the Host's Terminal Window:**
 
 ```bash
 mkdir -p ~/txst_robotics
@@ -686,7 +686,7 @@ cp Robotics_Assignment_1/Dockerfile Dockerfile
 cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 ```
 
-15) **Build and Start the Container:**
+15) **Build and Start the Container by executing the following on the Host's Terminal Window:**
 We have provided a `docker-compose.yml` file that automates the build process and sets up the necessary volume mappings (shared folders) and display settings.
 ```bash
 # Build and start the container in detached mode
@@ -696,7 +696,7 @@ docker compose up -d --build
 
 *Note: This process may take a long time depending on your internet speed as it downloads ROS 2 Humble and builds the simulation packages.*
 
-16) **Enable GUI Permissions:**
+16) **Enable GUI Permissions by executing the following on the Host's Terminal Window:**
 Since the simulation runs inside Docker but displays on your host screen, you need to allow local connections to the X server:
 ```bash
 xhost +local:root
@@ -704,7 +704,7 @@ xhost +local:root
 ```
 *You may need to run this command again if you restart your computer.*
 
-Once the container is running, you can enter it and run the simulation examples by following the instructions meant for the provided laptop. 
+Once the container is built and running, you can enter it and run the simulation examples by following the instructions meant for the provided laptop. 
 
 
 
