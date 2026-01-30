@@ -27,9 +27,9 @@ For all questions regarding milestone assignments and the robot, **you should co
 
 <https://spring2026txstrobot.slack.com/>
 
-We use vim (vi) for text editing in a terminal environment. Please refer to the tutorial for Vim if you are not familiar with vim environment for editing documents. 
+### Environment Setup Requirement
 
-https://opensource.com/article/19/3/getting-started-vim
+For this and future milestone assignments, you need a **x86 PC** to run the software necessary to run the simulation and to control a physical Turtlebot 3 robot. You can either use your own computer or offically supported **provided laptop in the robot room** to complete the assignment requirement. If you are interested in setting up the "Remote-PC" environment using your own laptop, you can look into the appendix of the assignment. The hardware requirement for "Remote-PC" is an X86 PC compatible with Ubuntu 24.04 LTS with Nvidia Graphics. You would also need a speaker and a microphone for milestone assignment 5 onwards. 
 
 ### Assignment Requirement
 
@@ -39,7 +39,7 @@ You need to demonstrate that you have a working setup and can operate the turtle
 
 * **Individual Submission:** **Every team member must submit the video link(s) separately to Canvas.** If the video is duplicated within a team, that is acceptable; however, this ensures that only active participants who have access to the team’s recordings can receive credit. 
 
-* **Standardized Hosting:** **To manage file sizes, do not upload raw video files (e.g., MP4) directly to Canvas.** Instead, **upload your videos to YouTube (set as "Unlisted")** and submit the links via a document.
+* **Standardized Hosting:** **To manage file sizes, do not upload raw video files (e.g., MP4) directly to Canvas.** Instead, **upload your videos to YouTube (set as "Unlisted")** and submit the links in the text box on the submission page of the Canvas under Assignment 1.
 
 ### Video Demo Requirements
 
@@ -47,13 +47,13 @@ Your group will **record** one or more video clips. The estimated total length o
 
 Your recording setup should be organized to show all relevant windows at once: the terminal(s) used for launching nodes, the Gazebo simulation window, and the RViz visualization window.
 
-You do not need to edit the videos, and uploading raw **footage** will suffice. You can split the demonstration into multiple videos **if necessary to show different parts of the requirement.** 
+You do not need to edit the videos, and uploading **raw footage** will suffice. You can **split the demonstration into multiple videos if necessary** to show different parts of the requirement. 
 
 ### Major Change Log
 
 #### v1.0
 - Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
-- **Major Update:** Migrated remote PC environment to Ubuntu 22.04 and ROS 2 Humble.
+- **Major Update:** Migrated remote PC Docker environment to Ubuntu 22.04 and ROS 2 Humble.
 
 --- 
 
@@ -71,7 +71,7 @@ The above manual might help you if you are not comfortable with the provided ins
 
 Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
-For the provided laptop, all the programs you need are preinstalled. However, you still need to set up a Docker environment for your account. For your first login, you will set the password for the account. Please do not attempt to set a password or log onto a group number other than your assigned group number. 
+For the **provided laptop**, all the programs you need are preinstalled. However, you still need to **set up a Docker environment for your account**. For your first login, the **password for your group would be the same as your group's name**. For example, the password for group1 would be group1. **Reset your group's password with the passwd command after your first login** to protect your account. Please do not attempt to set a password or log onto a group number other than your assigned group number. 
 
 # Part 1: Container Setup and How to Use Docker
 
@@ -82,7 +82,7 @@ For the provided laptop, all the programs you need are preinstalled. However, yo
 mkdir -p ~/turtlebot_docker
 cd ~/turtlebot_docker
 mkdir -p my_code
-git clone https://github.com/dmz44/Robotics_Assignment_1.git.
+git clone https://github.com/dmz44/Robotics_Assignment_1.git
 cp Robotics_Assignment_1/Dockerfile Dockerfile
 cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 ```
@@ -296,10 +296,10 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number.
+**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number. Within nano, you can press Ctrl +O then Enter to save (write out), follwed by Ctrl+X to exit. 
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
-    vi turtlebot3_2d.lua
+    nano turtlebot3_2d.lua
 
 **[Remote PC]** After editing the lua script, bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
 
@@ -406,10 +406,10 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. 
+**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. 
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
-    vi turtlebot3.yaml
+    nano turtlebot3.yaml
 
 **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
@@ -549,22 +549,22 @@ Explain Your Findings: In your narration, clearly state:
 
 # Appendix
 
-# [Optional] How to Install Required Software on Your Own PC [Not Supported]
+# [Guide] [Optional] How to Install Required Software on Your Own PC 
 
-While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited to support multiple student groups. 
+While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited by logistical constraints. 
 
-The hardware requirement is hardware capable of supporting the Ubuntu 24 Operating System with a relatively modern Nvidia GPU, a microphone, and a speaker.
+The hardware requirement is hardware capable of supporting the Ubuntu 24 Operating System with a relatively modern Nvidia GPU, a microphone, and a speaker. While Docker is designed to allow portability across Operating Systems, other operating system configurations are not tested by us. 
 
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Humble.  Please select Humble on the website.
 
 **(Original URL)**
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup>
 
-For your information, you can also get away from using Docker by following the instructions from the above URL to install robot packages locally on **Ubuntu 22.04** PC for milestones 1 to 3. However, Artificial Intelligence materials from Milestones 4 to 6 are not supported by the local installation. 
+For your information, you can also try following the instructions from the above URL to install robot packages locally on **Ubuntu 22.04** PC for milestones 1 to 3. However, Artificial Intelligence materials from Milestones 4 onwards are not supported by the local installation. 
 
 ## Preparing ROS 2 Environment for Your PC as ‘Remote PC’ with Docker. 
 
-### (Note: if you choose to develop with your own PC, we will not troubleshoot or support your environment)
+### Note: if you choose to develop with your own PC, we will not help troubleshoot or support your environment. We expect you to have reasonable knowledge in computer science to debug any errors if you are to follow this optional guide.
 
 1) **Install Ubuntu 24.04 LTS (64bit, Desktop)**. We recommend not using WSL2 or any other virtualization.
 
@@ -646,7 +646,7 @@ newgrp docker
 ```
 
 
-10) **Verify Installation:**
+10) **Verify Installation:** If you are getting permission errors, you might need to reboot your computer after adding your user to the Docker group. Alternatively, for a temporary solution, you can add sudo in front of all the commands for Docker. 
 
 ```bash
 docker run hello-world
@@ -679,13 +679,14 @@ sudo systemctl restart docker
 ```
 
 14) **Clone the course Docker repository:**
-*(Replace the URL below with the actual course repository link)*
+
 ```bash
 mkdir -p ~/txst_robotics
 cd ~/txst_robotics
 mkdir -p ~/my_code
-git clone https://github.com/dmz44/Robotics_Assignment_1.git.
-
+git clone https://github.com/dmz44/Robotics_Assignment_1.git
+cp Robotics_Assignment_1/Dockerfile Dockerfile
+cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 ```
 
 15) **Build and Start the Container:**
@@ -695,7 +696,6 @@ We have provided a `docker-compose.yml` file that automates the build process an
 docker compose up -d --build
 
 ```
-
 
 *Note: This process may take a long time depending on your internet speed as it downloads ROS 2 Humble and builds the simulation packages.*
 
@@ -707,7 +707,7 @@ xhost +local:root
 ```
 *You may need to run this command again if you restart your computer.*
 
-Once the container is running, you can enter it and run the simulation examples.
+Once the container is running, you can enter it and run the simulation examples by following the instructions meant for the provided laptop. 
 
 
 
