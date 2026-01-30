@@ -19,7 +19,7 @@ Robot Operating System version is associated with Ubuntu Long-Term Support Versi
 
 [https://docs.ros.org/en/humble/Tutorials.html](https://docs.ros.org/en/humble/Tutorials.html)
 
-You might find this video a useful overview of the requirements of Milestone 1.
+You might find this video useful to understand the requirements of Milestone 1. Note that this video uses outdated software versions.
 
 <https://www.youtube.com/watch?v=8w3xhG1GPdo>
 
@@ -29,7 +29,7 @@ For all questions regarding milestone assignments and the robot, **you should co
 
 ### Environment Setup Requirement
 
-For this and future milestone assignments, you need a **x86 PC** to run the software necessary to run the simulation and to control a physical Turtlebot 3 robot. You can either use your own computer or offically supported **provided laptop in the robot room** to complete the assignment requirement. If you are interested in setting up the "Remote-PC" environment using your own laptop, you can look into the appendix of the assignment. The hardware requirement for "Remote-PC" is an X86 PC compatible with Ubuntu 24.04 LTS with Nvidia Graphics. You would also need a speaker and a microphone for milestone assignment 5 onwards. 
+For this and future milestone assignments, you need an **x86 PC** to run the software necessary to run the simulation and to control a physical Turtlebot 3 robot. You can either use your own computer or offically supported **provided laptop in the robot room** to complete the assignment requirement. If you are interested in setting up the "Remote-PC" environment using your own laptop, you can look into the appendix of the assignment. The hardware requirement for "Remote-PC" is an X86 PC compatible with Ubuntu 24.04 LTS with Nvidia Graphics. You would also need a speaker and a microphone for milestone assignment 5 onwards. 
 
 ### Assignment Requirement
 
@@ -67,7 +67,7 @@ The following instructions for environment setup are of our own, based on a manu
 
 The above manual might help you if you are not comfortable with the provided instructions.
 
-## Preparing ROS 2 environment for the provided Laptop as the ‘Remote PC’.
+## Preparing ROS 2 environment for the *provided Laptop* as the ‘Remote PC’.
 
 Please log in to the account corresponding to your group number. You would be asked to set up a first-time password.
 
@@ -195,24 +195,24 @@ This manual is based on the following manual for Humble.
 
 This manual assumes you have completed Part 1 on setting up your remote PC. Please enter the container and work within the container.
 
-**[Remote PC]** **Enter the Container:**
+**[Remote PC]** **Enter the Container:** by entering following command in a new terminal window.
 
 ```bash
 docker exec -it remote_pc_humble bash
 
 ```
 
-Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
+Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation software in your native shell. 
 
-**[Remote PC]** Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command.
+**[Remote PC]** Bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command in the docker shell.
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
-**[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+**[Remote PC]** To control the TurtleBot3 in the Gazebo simulation, the servo server node of MoveIt must be launched first. Open another Docker shell by opening another terminal window and entering the container on that terminal window. Type the following command in the new Docker shell.
 
     ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
         
- **[Remote PC]** Launch the keyboard teleoperation node. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+ **[Remote PC]** Launch the keyboard teleoperation node. Open another Docker shell by repeating the previous steps, and type the following command in the new Docker shell.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
         
@@ -250,20 +250,20 @@ Note: Simulation for vanilla turtlebot 3 and turtlebot 3 with manipulator arm us
 
 Close all terminals if you are coming from previous sections.
 
-**[Remote PC]** **Enter the Container:**
+**[Remote PC]** **Enter the Container:** by entering following command in a new terminal window.
 
 ```bash
 docker exec -it remote_pc_humble bash
 
 ```
 
-Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be able to execute simulation outside docker shell. 
+Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command.
+**[Remote PC]** Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world by typing the following command in the new Docker shell.
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
-**[Remote PC]** Launch the slam node using the following command. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+**[Remote PC]** Launch the slam node. Open another Docker shell by repeating the steps to enter the container on another terminal window and type the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py
 
@@ -271,21 +271,19 @@ Verify that you have docker shell, e.g. root@remote-pc-humble. You will not be a
 
     ros2 launch turtlebot3_manipulation_moveit_config servo.launch.py
     
-**[Remote PC]** Launch the keyboard teleoperation node. 
-
-Open another Docker shell by repeating entering the container on another terminal window and type the following command.
+**[Remote PC]** Launch the keyboard teleoperation node. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
 Use O, K, L, ; keys to drive the TurtleBot3 platform to create a good “map” of the environment.
 
     ros2 run turtlebot3_manipulation_teleop turtlebot3_manipulation_teleop
 
-**[Remote PC]** Open a new terminal and another Docker shell on Remote PC. Run the nav2_map_server to save the current map on RViz.
+**[Remote PC]** Open a new terminal window and another Docker shell. Run the nav2_map_server to save the current map on RViz.
 
     ros2 run nav2_map_server map_saver_cli -f ~/map
 
-## How to Launch with Modified SLAM Parameters
+## How to Launch SLAM with Modified SLAM Parameters
 
-Further along the road, you might not like how the SLAM software behaves and want to change its behavior by modifying certain SLAM parameters. Please read the tuning guide before trying to follow this section. For people using their own PC, please also refer to the last section of the appendix.
+You can change how the SLAM software behaves without recompiling anything by modifying certain SLAM parameters. Please read the tuning guide before trying to follow this section. 
 
 **[Remote PC]** Close all terminals. Open another Docker shell. 
 
@@ -296,16 +294,16 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Note that you have to change the path to your group's corresponding number. Within nano, you can press Ctrl +O then Enter to save (write out), follwed by Ctrl+X to exit. 
+**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. 
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
     nano turtlebot3_2d.lua
 
-**[Remote PC]** After editing the lua script, bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world with the following command. 
+**[Remote PC]** After editing the lua script, bring up the TurtleBot3 with OpenMANIPULATOR-X into the Gazebo world. Open another Docker shell by repeating entering the container on another terminal window and type the following command.
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
-**[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file.
+**[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file with the following command.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py 
 
@@ -379,7 +377,7 @@ Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be a
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
- **[Remote PC]** Open another Docker shell on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM.
+ **[Remote PC]** Open another Docker shell on Remote PC. Launch the navigation file using the following command. Note that you are referring to map.yaml file created in the previous step for SLAM. This would launch a GUI program called Rviz along with the Gazebo Simulation Window.
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml
 
@@ -395,7 +393,7 @@ Recall from SLAM that you can tune parameters. You can also tune Navigation para
 
 ## How to Launch with Modified Navigation 2 Parameters
 
-Further along the road, you might not like how the Navigation software behaves and want to change its behavior by modifying certain Navigation 2 parameters. Please read the tuning guide before trying to follow this section. 
+You can change how the Navigation software behaves by modifying certain Navigation 2 parameters. Please read the tuning guide before trying to follow this section. 
 
 **[Remote PC]** **Enter the Container:**
 
@@ -519,7 +517,6 @@ This part demonstrates your ability to map an unknown environment.
 - Launch SLAM: With the simulation running, launch the Cartographer SLAM node.
 - Build the Map: Use the teleoperation node to drive the robot around the Gazebo environment. Your video must show the map being constructed in real-time within RViz. Drive enough to create a reasonably complete and accurate map of the world.
 - Save the Map: Once the map is complete, execute the map_saver_cli command in a new terminal to save your map.
-- Verify Files: Briefly open your file manager and show the map files that were generated in your home directory.
 
 ## Part C: Autonomous Navigation 
 
@@ -537,7 +534,7 @@ Localize the Robot: In RViz, confirm the robot's initial position is correct. If
 
 This final section demonstrates that you have explored the configuration files and understand how tuning parameters can affect robot behavior.
 
-- Choose a Parameter: Select one parameter from either the SLAM configuration (turtlebot3.lua) or the Navigation2 configuration (turtlebot3.yaml). Note: Exact Lua and YAML file names are different.
+- Choose a Parameter: Select one parameter from either the SLAM configuration (turtlebot3.lua) or the Navigation2 configuration (turtlebot3.yaml). Note: Exact Lua and YAML file names can be different.
 - Modify It: Change its value significantly (e.g., double or halve the default value).
 - Demonstrate the Effect: Briefly re-run the relevant task (SLAM or Navigation) and show the resulting change in the robot's behavior.
 
@@ -553,7 +550,7 @@ Explain Your Findings: In your narration, clearly state:
 
 While we highly recommend that you use the provided Laptop, you can choose to use your own portable PC for simulations and physical robot control. This might be beneficial for you, as access to the robot is limited by logistical constraints. 
 
-The hardware requirement is hardware capable of supporting the Ubuntu 24 Operating System with a relatively modern Nvidia GPU, a microphone, and a speaker. While Docker is designed to allow portability across Operating Systems, other operating system configurations are not tested by us. 
+The hardware requirement is hardware capable of supporting the Ubuntu 24 Operating System with a relatively modern Nvidia GPU, a microphone, and a speaker. While Docker is designed to allow portability across Operating Systems, some hardware passthrough might break with other operating system configurations not tested by us. 
 
 The following instructions are based on a manual provided by the manufacturer, Robotis. We are using the ROS 2 version Humble.  Please select Humble on the website.
 
