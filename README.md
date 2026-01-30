@@ -678,9 +678,9 @@ sudo systemctl restart docker
 14) **Clone the course Docker repository by executing the following on the Host's Terminal Window:**
 
 ```bash
-mkdir -p ~/txst_robotics
-cd ~/txst_robotics
-mkdir -p ~/my_code
+mkdir -p ~/turtlebot_docker
+cd ~/turtlebot_docker
+mkdir -p my_code
 git clone https://github.com/dmz44/Robotics_Assignment_1.git
 cp Robotics_Assignment_1/Dockerfile Dockerfile
 cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
