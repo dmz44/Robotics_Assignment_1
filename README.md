@@ -1,6 +1,6 @@
 # 2026 CS 4379K / CS 5342 Introduction to Autonomous Robotics, Robotics and Autonomous Systems
 
-## Programming Assignment: Milestone 1 (V1.0)
+## Programming Assignment: Milestone 1 (V1.1)
 
 **Authors:** Minhyuk Park and Tsz-Chiu Au
 
@@ -51,6 +51,9 @@ You do not need to edit the videos, and uploading **raw footage** will suffice. 
 
 ### Major Change Log
 
+#### v1.1
+- Instruction updated to show how to reset docker container, should you find something wrong with the container within individual accounts. (It should use cached data and cost minimal time to do it)
+
 #### v1.0
 - Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
 - **Major Update:** Migrated remote PC Docker environment to Ubuntu 22.04 and ROS 2 Humble.
@@ -89,8 +92,12 @@ cp Robotics_Assignment_1/docker-compose.yml docker-compose.yml
 
 2. **Build and Start the Container:**
 We have provided a `docker-compose.yml` file that automates the build process and sets up the necessary volume mappings (shared folders) and display settings.
+
+**We recommend doing this when you find weird behaviors while doing your assignment, e.g. Rviz not communicating with Gazebo during Nav2**
+
 ```bash
 # Build and start the container in detached mode
+cd ~/turtlebot_docker
 HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d --build
 
 ```
@@ -116,7 +123,8 @@ xhost +local:root
 2. **Start the Container. You only need to do it once every boot unless you stop the environment by composing down:**
 
 ```bash
-# Build and start the container in detached mode without building. 
+# Build and start the container in detached mode without building.
+cd ~/turtlebot_docker
 HOST_UID=$(id -u) USER_HOME=$HOME docker compose up -d 
 
 ```
@@ -389,6 +397,8 @@ This green arrow is a marker that can specify the destination of the robot.
 The root of the arrow is the x, y coordinates of the destination, and the angle  is determined by the orientation of the arrow.
 As soon as x, y, and targets are set, TurtleBot3 will immediately start moving to the destination.
 
+**If you can see a loaded map while following the steps, but find that buttons such as 2D Nav Goal do nothing, you might have broken some configuration. To fix this, you might want to compose down and rebuild the container in your account. Refer to the above instructions to do this.**
+
 Recall from SLAM that you can tune parameters. You can also tune Navigation parameters by modifying the appropriate YAML file. Please read the tuning guide before trying to tune. For people using their own PC, please also refer to the last section of the appendix.
 
 ## How to Launch with Modified Navigation 2 Parameters
@@ -407,7 +417,7 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 **[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. 
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
-    nano turtlebot3.yaml
+    nano turtlebot3_2d.lua
 
 **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
