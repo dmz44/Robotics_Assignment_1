@@ -302,7 +302,7 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. 
+**[Remote PC]** The configuration location can be accessed by following the terminal command. Go to the folder below inside the Docker container and look for the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. If you find that nano is not installed in your container, you can quickly install it with **sudo apt-get update && apt-get install -y nano**. You can also use vim (vi) to edit the parameter file.
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_cartographer/share/turtlebot3_manipulation_cartographer/config
     nano turtlebot3_2d.lua
@@ -414,7 +414,7 @@ docker exec -it remote_pc_humble bash
 
 Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be able to execute the simulation outside docker shell. 
 
-**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. 
+**[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. If you find that nano is not installed in your container, you can quickly install it with **sudo apt-get update && apt-get install -y nano**. You can also use vim (vi) to edit the parameter file.
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
     nano turtlebot3_2d.lua
