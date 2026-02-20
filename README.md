@@ -1,6 +1,6 @@
 # 2026 CS 4379K / CS 5342 Introduction to Autonomous Robotics, Robotics and Autonomous Systems
 
-## Programming Assignment: Milestone 1 (V1.1)
+## Programming Assignment: Milestone 1 (V1.15)
 
 **Authors:** Minhyuk Park and Tsz-Chiu Au
 
@@ -53,6 +53,7 @@ You do not need to edit the videos, and uploading **raw footage** will suffice. 
 
 #### v1.1
 - Instruction updated to show how to reset docker container, should you find something wrong with the container within individual accounts. (It should use cached data and cost minimal time to do it)
+- Instruction updated in Nav2
 
 #### v1.0
 - Instruction updated to support the latest Nvidia GPUs (SM120) using a Docker container.
@@ -328,6 +329,9 @@ The SLAM in ROS2 uses Cartographer ROS, which provides configuration options via
 
 The options are defined in turtlebot3_cartographer/config/turtlebot3_lds_2d.lua file. (Note: Exact file name and file location might differ.) For more details about each option, please refer to the Cartographer ROS official documentation.
 
+**Note that some slam parameter changes might break your simulation.**
+
+
 * `MAP_BUILDER.use_trajectory_builder_2d`
     * This option sets the type of SLAM.
 
@@ -432,6 +436,8 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 Just like SLAM, you will demonstrate your understanding of parameters in ROS2 software with Navigation2.
 
 The Navigation2 stack has many unique parameters that change performance for different robots. Although it’s similar to the ROS1 Navigation, please refer to the Configuration Guide of Navigation2 or the ROS Navigation Tuning Guide by Kaiyu Zheng for more details.
+
+**Note that some navigation parameter changes might break your simulation.**
 
 Reference:
 <https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation>
