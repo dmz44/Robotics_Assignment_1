@@ -312,7 +312,7 @@ Verify that you have Docker shell, e.g. root@remote-pc-humble. You will not be a
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
-**[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file with the following command.
+**[Remote PC]** Launch another Docker shell and launch cartographer with your modified Lua file with the following command. Always be ready to revert your changed Lua file in case you break the simulation.
 
     ros2 launch turtlebot3_manipulation_cartographer cartographer.launch.py 
 
@@ -427,7 +427,7 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 
     ros2 launch turtlebot3_manipulation_gazebo gazebo.launch.py
 
-**[Remote PC]** Inside the Docker shell, load your custom configuration YAML file by changing the launch command
+**[Remote PC]** Inside the Docker shell, load your custom configuration YAML file by changing the launch command. Always be ready to revert your changed YAML file in case you break the simulation.
 
     ros2 launch turtlebot3_manipulation_navigation2 navigation2.launch.py map_yaml_file:=$HOME/map.yaml 
 
