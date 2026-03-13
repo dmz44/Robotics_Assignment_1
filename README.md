@@ -421,7 +421,7 @@ Verify that you have Docker shell, e.g., root@remote-pc-humble. You will not be 
 **[Remote PC]** The configuration location can be accessed by following the terminal command inside the Docker shell. Go to the folder below and modify the appropriate Lua script. Within nano, you can press Ctrl +O then Enter to save (write out), followed by Ctrl+X to exit. If you find that nano is not installed in your container, you can quickly install it with **sudo apt-get update && apt-get install -y nano**. You can also use vim (vi) to edit the parameter file.
 
     cd ~/turtlebot3_ws/install/turtlebot3_manipulation_navigation2/share/turtlebot3_manipulation_navigation2/param
-    nano turtlebot3_2d.lua
+    nano turtlebot3.lua
 
 **[Remote PC]**   Bringup the TurtleBot3 with OpenMANIPULATOR-X into Gazebo world with the following command after opening another terminal window and entering another window of Docker shell.
 
